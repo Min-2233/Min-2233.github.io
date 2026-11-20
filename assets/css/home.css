@@ -183,7 +183,7 @@ body.is-ready .footer{opacity:1}
 
 /* ============ 小屏微调 ============ */
 @media (max-width:520px){
-  .topbar{padding:12px 14px}
+  .topbar{height:56px; padding:0 14px}
   .avatar{width:44px;height:44px}
   .btn{padding:5px 9px;font-size:11px}
   .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}

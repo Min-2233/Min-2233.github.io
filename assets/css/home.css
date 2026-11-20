@@ -73,15 +73,12 @@ a{color:inherit;text-decoration:none}
 .topbar{
   position:fixed; top:0; left:0; right:0; z-index:20;
   display:flex; align-items:center; justify-content:space-between;
-  padding:16px 22px;
 
-  /* 顶栏偏亮 */
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,.06)  0%,
-    rgba(255,255,255,.025) 55%,
-    rgba(255,255,255,0)   100%
-  );
+  height:64px;                    /* ← 关键：固定高度，所有页面完全对齐 */
+  padding:0 22px;                 /* ← 高度定了，上下 padding 归零，改为垂直居中 */
+
+  background:var(--bar);          /* ← 不透明实色 */
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .topbar::after{

@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -53,18 +57,17 @@
   <h1 class="notes-title">CTF<span class="cursor" aria-hidden="true"></span></h1>
   <p class="notes-sub"> Web 相关 · 共 <span id="cnt">1</span> 篇</p>
 
-  <ul class="list">
-
-    <!-- ===== 新文章：复制这一整段 <li>，改 href 和标题 ===== -->
+ <ul class="list">
+{% assign notes = site.pages | where_exp: "p", "p.path contains 'ctf/web/'" | where_exp: "p", "p.name != 'index.html'" | sort: "date" | reverse %}
+{% for note in notes %}
     <li>
-      <a class="item" href="./php相关漏洞.html">
-        <span class="idx">01</span>
-        <span class="name">PHP 相关漏洞</span>
+      <a class="item" href="{{ note.url | relative_url }}">
+        <span class="idx">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+        <span class="name">{{ note.title | default: note.name }}</span>
         <span class="go" aria-hidden="true">→</span>
       </a>
     </li>
-    <!-- ===== 复制到这里 ===== -->
-
+{% endfor %}
   </ul>
 
 </main>

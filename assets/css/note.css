@@ -108,3 +108,72 @@
   .article pre{padding:13px 14px}
   .article th,.article td{padding:7px 9px}
 }
+
+/* ============================================
+   代码高亮配色（One Dark 风格，适配深灰底）
+   想换配色只改这一段
+   ============================================ */
+
+.highlight{background:transparent}
+
+/* 注释 */
+.highlight .c,.highlight .c1,.highlight .cm,.highlight .cs,.highlight .cd{
+  color:#6b6d78; font-style:italic;
+}
+
+/* 关键字：class / public / function / new / if / return */
+.highlight .k,.highlight .kc,.highlight .kd,.highlight .kn,
+.highlight .kp,.highlight .kr,.highlight .kt{
+  color:#c792ea;
+}
+
+/* 字符串 */
+.highlight .s,.highlight .s1,.highlight .s2,.highlight .sb,
+.highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,
+.highlight .si,.highlight .sx,.highlight .sr,.highlight .ss,.highlight .dl{
+  color:#c3e88d;
+}
+
+/* 数字 */
+.highlight .m,.highlight .mb,.highlight .mf,.highlight .mh,
+.highlight .mi,.highlight .il,.highlight .mo{
+  color:#f78c6c;
+}
+
+/* 变量：$name / $admin / $s */
+.highlight .nv,.highlight .vc,.highlight .vg,.highlight .vi,.highlight .vm{
+  color:#e8e8ea;
+}
+
+/* 函数名 */
+.highlight .nf,.highlight .fm{
+  color:#82aaff;
+}
+
+/* 类名、命名空间 */
+.highlight .nc,.highlight .nn{
+  color:#ffcb6b;
+}
+
+/* 内置函数、属性 */
+.highlight .na,.highlight .nb,.highlight .bp{
+  color:#82aaff;
+}
+
+/* 运算符：= . ; ; -> */
+.highlight .o,.highlight .ow{
+  color:#89ddff;
+}
+
+/* 标点：括号、分号、冒号 */
+.highlight .p,.highlight .pm{
+  color:#a6accd;
+}
+
+/* HTML 标签 */
+.highlight .nt{color:#f07178}
+
+/* diff */
+.highlight .gd{color:#f07178}
+.highlight .gi{color:#c3e88d}
+.highlight .err{color:#ff5370;background:none}

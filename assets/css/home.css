@@ -191,3 +191,9 @@ body.is-ready .footer{opacity:1}
   .btn{padding:5px 9px;font-size:11px}
   .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}
 }
+
+/* 本标签页已看过开场：直接显示主页 */
+html.no-splash #splash{display:none}
+html.no-splash .hero,
+html.no-splash .topbar,
+html.no-splash .footer{opacity:1}

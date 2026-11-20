@@ -83,6 +83,16 @@ a{color:inherit;text-decoration:none}
   );
 }
 
+.topbar::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0; height:1px;
+  pointer-events:none;
+  background:linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,.09),
+    transparent);
+}
+
 .topbar-left,.topbar-right{display:flex;align-items:center;gap:10px}
 
 .avatar{

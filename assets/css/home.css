@@ -2,11 +2,12 @@
    配色 / 字体：只改这里就能换整体风格
    ============================================================ */
 :root{
-  --bg:      #1b1b1f;   /* 深灰底（原 #08080a 近黑） */
+  --bg:      #1b1b1f;
+  --bg-rgb:  27, 27, 31;   /* 必须和 --bg 保持一致，改 --bg 时同步改这里 */
   --text:    #e8e8ea;
   --muted:   #8f8f98;
   --line:    #2e2e34;
-  --accent:  #ffffff;   /* 原红色 → 白色 */
+  --accent:  #ffffff;
 
   --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
           Consolas,"Liberation Mono",Menlo,"Courier New",monospace;
@@ -28,9 +29,20 @@ a{color:inherit;text-decoration:none}
 .bg-grid{
   position:fixed; inset:0; width:100%; height:100%;
   z-index:0; pointer-events:none;
-  opacity:.05;
-  -webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,transparent 0%,#000 72%);
-          mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,transparent 0%,#000 72%);
+  opacity:.07;
+}
+/* 上实下虚：顶部完全盖住网格，底部逐渐透出 */
+.bg-veil{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:linear-gradient(
+    to bottom,
+    rgba(var(--bg-rgb), 1)     0%,
+    rgba(var(--bg-rgb), 1)    12%,
+    rgba(var(--bg-rgb), .90)  30%,
+    rgba(var(--bg-rgb), .65)  55%,
+    rgba(var(--bg-rgb), .35)  78%,
+    rgba(var(--bg-rgb), .10) 100%
+  );
 }
 
 /* ============ 开场打字 ============ */

@@ -1,0 +1,151 @@
+/* ============================================================
+   配色 / 字体：只改这里就能换整体风格
+   ============================================================ */
+:root{
+  --bg:      #08080a;   /* 背景 */
+  --text:    #e8e8ea;   /* 主文字 */
+  --muted:   #8a8a92;   /* 次要文字 */
+  --line:    #242428;   /* 描边 */
+  --accent:  #c8553d;   /* 强调色（副标题、光标）→ 想全灰就改成 #9a9aa2 */
+
+  --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
+          Consolas,"Liberation Mono",Menlo,"Courier New",monospace;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--mono);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+
+/* ============ 背景纹理 ============ */
+.bg-grid{
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:0; pointer-events:none;
+  opacity:.05;
+  -webkit-mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,transparent 0%,#000 72%);
+          mask-image:radial-gradient(ellipse 58% 62% at 50% 50%,transparent 0%,#000 72%);
+}
+
+/* ============ 开场打字 ============ */
+#splash{
+  position:fixed; inset:0; z-index:100;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg);
+  transition:opacity .8s ease;
+}
+#splash.hide{opacity:0;pointer-events:none}
+.splash-inner{
+  font-size:clamp(18px,3.4vw,28px);
+  letter-spacing:.2em;
+  color:#d6d6da;
+}
+.caret{
+  display:inline-block;
+  width:.6ch; height:1em;
+  margin-left:2px;
+  background:var(--accent);
+  vertical-align:-.14em;
+  animation:blink 1.05s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+
+/* ============ 顶栏 ============ */
+.topbar{
+  position:fixed; top:0; left:0; right:0; z-index:20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 22px;
+}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:10px}
+
+.avatar{
+  flex:0 0 auto;
+  width:34px; height:34px;
+  border-radius:50%;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#141416;
+  transition:.2s ease;
+}
+.avatar:hover{border-color:#3a3a42}
+.avatar svg,.avatar img{width:100%;height:100%;display:block}
+
+.btn{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 11px;
+  font-family:var(--mono);
+  font-size:12px; letter-spacing:.04em; line-height:1;
+  color:#c9c9d0;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:7px;
+  backdrop-filter:blur(6px);
+  transition:.2s ease;
+}
+.btn:hover{color:#fff;border-color:#45454f;background:rgba(255,255,255,.06)}
+.btn .icon{width:12px;height:12px;display:block;flex:0 0 auto}
+.btn-ctf:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ============ 中间主视觉 ============ */
+.hero{
+  position:relative; z-index:1;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  text-align:center;
+  padding:0 20px;
+}
+.hero-title{
+  margin:0;
+  font-size:clamp(22px,4.6vw,40px);
+  font-weight:600;
+  letter-spacing:.12em;
+  line-height:1.25;
+  color:#f2f2f4;
+}
+.cursor{
+  display:inline-block;
+  width:2px; height:.95em;
+  margin-left:8px;
+  background:var(--accent);
+  vertical-align:-.08em;
+  animation:blink 1.05s steps(1) infinite;
+}
+.hero-sub{
+  margin:22px 0 0;
+  font-size:clamp(11px,1.4vw,14px);
+  letter-spacing:.38em;
+  text-indent:.38em;      /* 抵消最后一个字的字距，视觉居中 */
+  color:var(--accent);
+  text-transform:uppercase;
+}
+
+/* ============ 底栏 ============ */
+.footer{
+  position:fixed; left:0; right:0; bottom:0; z-index:20;
+  padding-bottom:16px;
+  text-align:center;
+  font-size:11px; letter-spacing:.08em;
+  color:#4e4e55;
+}
+
+/* ============ 进场：主页淡入 ============ */
+.hero,.topbar,.footer{opacity:0;transition:opacity .8s ease}
+body.is-ready .hero,
+body.is-ready .topbar,
+body.is-ready .footer{opacity:1}
+
+/* ============ 小屏微调 ============ */
+@media (max-width:520px){
+  .topbar{padding:12px 14px}
+  .avatar{width:30px;height:30px}
+  .btn{padding:5px 9px;font-size:11px}
+  .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}
+}

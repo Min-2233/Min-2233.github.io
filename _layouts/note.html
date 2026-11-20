@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title | default: site.title }}</title>
+<link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/note.css' | relative_url }}">
+</head>
+<body class="is-ready">
+
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <pattern id="hex" width="90" height="52" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="1">
+        <path d="M30 0 L15 26 L-15 26 L-30 0 L-15 -26 L15 -26 Z"/>
+        <path d="M75 26 L60 52 L30 52 L15 26 L30 0 L60 0 Z"/>
+        <path d="M120 0 L105 26 L75 26 L60 0 L75 -26 L105 -26 Z"/>
+        <path d="M30 52 L15 78 L-15 78 L-30 52 L-15 26 L15 26 Z"/>
+        <path d="M120 52 L105 78 L75 78 L60 52 L75 26 L105 26 Z"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#hex)"/>
+</svg>
+<div class="bg-veil"></div>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="btn" href="{{ '/ctf/web/' | relative_url }}">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3 5 8l5 5"/>
+      </svg>
+      <span>返回</span>
+    </a>
+    <span class="crumb">~/ctf/web</span>
+  </div>
+  <div class="topbar-right">
+    <a class="btn" href="https://github.com/Min-2233" target="_blank" rel="noopener">
+      <span>GitHub</span>
+    </a>
+  </div>
+</header>
+
+<article class="article">
+{{ content }}
+</article>
+
+<footer class="footer">© 2026 Min2233</footer>
+
+</body>
+</html>

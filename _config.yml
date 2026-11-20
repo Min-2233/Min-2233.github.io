@@ -1,9 +1,15 @@
 title: CTF 
 description: Web 
 theme: jekyll-theme-hacker
+
 defaults:
   - scope:
       path: "ctf"
       type: pages
     values:
       layout: note
+
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true

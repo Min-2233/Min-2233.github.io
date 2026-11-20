@@ -19,7 +19,7 @@ title: 首页
 </style>
 
 <div class="hero">
-  <h1>min2233</h1>
+  <h1>😀</h1>
   <p>ctf</p>
   <a class="btn" href="./ctf/web/">进入 Web →</a>
 </div>

@@ -3,12 +3,12 @@
    ============================================================ */
 :root{
   --bg:      #1b1b1f;
-  --bg-rgb:  27, 27, 31;   /* 必须和 --bg 保持一致，改 --bg 时同步改这里 */
+  --bg-rgb:  27, 27, 31;
+  --bar:     #26262d;   /* ← 新增：顶栏，比 --bg 亮一档 */
   --text:    #e8e8ea;
   --muted:   #8f8f98;
   --line:    #2e2e34;
   --accent:  #ffffff;
-
   --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
           Consolas,"Liberation Mono",Menlo,"Courier New",monospace;
 }

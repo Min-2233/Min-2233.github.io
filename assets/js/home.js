@@ -2,7 +2,7 @@
    开场动画参数：只改这里就行
    ============================================================ */
 const SPLASH = {
-  text: "min2233 blog",   // 开场逐字打出来的文字
+  text: "min2233",   // 开场逐字打出来的文字
   typeSpeed: 85,          // 每个字的间隔（ms）
   holdBeforeFade: 480,    // 打完停留多久再淡出（ms）
   fadeDuration: 800       // 淡出时长，需与 CSS 里 #splash 的 transition 一致

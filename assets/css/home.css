@@ -78,7 +78,7 @@ a{color:inherit;text-decoration:none}
 
 .avatar{
   flex:0 0 auto;
-  width:58px; height:58px;/* ============ 头像大小 ============ */
+  width:50px; height:50px;/* ============ 头像大小 ============ */
   border-radius:50%;
   overflow:hidden;
   border:1px solid var(--line);
@@ -101,7 +101,7 @@ a{color:inherit;text-decoration:none}
   transition:.2s ease;
 }
 .btn:hover{color:#fff;border-color:#45454f;background:rgba(255,255,255,.06)}
-.btn .icon{width:45px;height:45px;display:block;flex:0 0 auto}/* ============ 图标大小 ============ */
+.btn .icon{width:40px;height:40px;display:block;flex:0 0 auto}/* ============ 图标大小 ============ */
 .btn-ctf:hover{color:var(--accent);border-color:var(--accent)}
 
 /* ============ 中间主视觉 ============ */

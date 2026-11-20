@@ -1,5 +1,5 @@
 ---
-title: 首页
+title: min2233 blog
 ---
 
 <style>

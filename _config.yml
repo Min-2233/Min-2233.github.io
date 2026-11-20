@@ -1,6 +1,5 @@
-title: CTF 
-description: Web 
-theme: jekyll-theme-hacker
+title: CTF
+description: Web
 
 defaults:
   - scope:
@@ -9,7 +8,6 @@ defaults:
     values:
       layout: note
 
+markdown: kramdown
 kramdown:
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
+  syntax_highlighter: rouge

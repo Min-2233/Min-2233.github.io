@@ -1,0 +1,75 @@
+/* ===== 列表页专属样式（公共样式在 home.css） ===== */
+
+.notes{
+  position:relative; z-index:1;
+  max-width:760px;
+  margin:0 auto;
+  padding:110px 22px 80px;
+}
+
+.notes-title{
+  display:flex; align-items:center;
+  margin:0 0 12px;
+  font-size:clamp(20px,3.6vw,30px);
+  font-weight:600;
+  letter-spacing:.1em;
+  color:#f2f2f4;
+}
+
+.notes-sub{
+  margin:0 0 36px;
+  font-size:12px;
+  letter-spacing:.18em;
+  color:var(--muted);
+}
+
+/* 面包屑 */
+.crumb{
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+
+/* 列表 */
+.list{
+  list-style:none;
+  margin:0; padding:0;
+  border-top:1px solid var(--line);
+}
+.list li{border-bottom:1px solid var(--line)}
+
+.item{
+  display:flex; align-items:center; gap:14px;
+  padding:15px 6px;
+  color:var(--text);
+  transition:background .18s ease, padding-left .18s ease, color .18s ease;
+}
+.item:hover{
+  background:rgba(255,255,255,.04);
+  padding-left:14px;
+  color:#fff;
+}
+
+.idx{
+  flex:0 0 auto;
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:.08em;
+}
+
+.name{
+  flex:1 1 auto;
+  font-size:14px;
+  letter-spacing:.02em;
+}
+
+.go{
+  flex:0 0 auto;
+  font-size:12px;
+  color:var(--muted);
+  transition:transform .18s ease, color .18s ease;
+}
+.item:hover .go{transform:translateX(3px); color:#fff}
+
+/* 这个页面底栏不固定，避免压住列表 */
+.footer{position:static; padding:0 0 40px}

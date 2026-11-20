@@ -2,11 +2,11 @@
    配色 / 字体：只改这里就能换整体风格
    ============================================================ */
 :root{
-  --bg:      #08080a;   /* 背景 */
-  --text:    #e8e8ea;   /* 主文字 */
-  --muted:   #8a8a92;   /* 次要文字 */
-  --line:    #242428;   /* 描边 */
-  --accent:  #c8553d;   /* 强调色（副标题、光标）→ 想全灰就改成 #9a9aa2 */
+  --bg:      #1b1b1f;   /* 深灰底（原 #08080a 近黑） */
+  --text:    #e8e8ea;
+  --muted:   #8f8f98;
+  --line:    #2e2e34;
+  --accent:  #ffffff;   /* 原红色 → 白色 */
 
   --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
           Consolas,"Liberation Mono",Menlo,"Courier New",monospace;

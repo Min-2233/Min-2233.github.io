@@ -1,0 +1,110 @@
+/* ===== 笔记正文排版（深色终端风） ===== */
+
+.crumb{
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+
+.article{
+  position:relative; z-index:1;
+  max-width:760px;
+  margin:0 auto;
+  padding:110px 22px 90px;
+  font-size:15px;
+  line-height:1.9;
+  color:#c9c9d1;
+}
+.article > :first-child{margin-top:0}
+
+.article h1{
+  margin:0 0 28px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--line);
+  font-size:clamp(22px,3.4vw,30px);
+  font-weight:600;
+  letter-spacing:.06em;
+  color:#f2f2f4;
+}
+.article h2{
+  margin:46px 0 14px;
+  font-size:19px; font-weight:600;
+  letter-spacing:.04em; color:#eaeaee;
+}
+.article h3{
+  margin:34px 0 12px;
+  font-size:16px; font-weight:600; color:#e0e0e6;
+}
+.article h4{
+  margin:26px 0 10px;
+  font-size:14px; font-weight:600; color:#d6d6dc;
+}
+
+.article p{margin:16px 0}
+.article strong{color:#fff;font-weight:600}
+.article em{color:#dcdce2}
+
+.article a{
+  color:#93aecf;
+  border-bottom:1px solid rgba(147,174,207,.35);
+  transition:.18s ease;
+}
+.article a:hover{color:#c9dcf5;border-bottom-color:#c9dcf5}
+
+.article ul,.article ol{margin:16px 0;padding-left:24px}
+.article li{margin:7px 0}
+.article li::marker{color:var(--muted)}
+
+.article hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+
+/* 行内代码 */
+.article code{
+  font-family:var(--mono);
+  font-size:.88em;
+  padding:.12em .42em;
+  border-radius:4px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:#e8e8ee;
+}
+
+/* 代码块 */
+.article pre{
+  margin:22px 0;
+  padding:16px 18px;
+  overflow-x:auto;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:#141417;
+  line-height:1.7;
+}
+.article pre code{
+  padding:0; border:0; background:none;
+  font-size:13px; color:#d6d6dc;
+}
+
+/* 引用 */
+.article blockquote{
+  margin:22px 0;
+  padding:2px 0 2px 16px;
+  border-left:2px solid #3a3a44;
+  color:var(--muted);
+}
+.article blockquote p{margin:8px 0}
+
+/* 表格 */
+.article table{width:100%;margin:22px 0;border-collapse:collapse;font-size:14px}
+.article th,.article td{padding:9px 12px;border:1px solid var(--line);text-align:left}
+.article th{background:rgba(255,255,255,.045);color:#fff;font-weight:600}
+
+/* 图片 */
+.article img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
+
+/* 底栏不固定 */
+.footer{position:static;padding:0 0 40px}
+
+@media (max-width:520px){
+  .article{padding:96px 16px 70px;font-size:14.5px;line-height:1.85}
+  .article pre{padding:13px 14px}
+  .article th,.article td{padding:7px 9px}
+}

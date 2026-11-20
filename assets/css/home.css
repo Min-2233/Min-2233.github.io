@@ -66,11 +66,11 @@ a{color:inherit;text-decoration:none}
 
 .avatar{
   flex:0 0 auto;
-  width:34px; height:34px;
+  width:38px; height:38px;/* ============ 头像大小 ============ */
   border-radius:50%;
   overflow:hidden;
   border:1px solid var(--line);
-  background:#141416;
+  background:#232327;/* ============ 头像颜色 ============ */
   transition:.2s ease;
 }
 .avatar:hover{border-color:#3a3a42}
@@ -89,7 +89,7 @@ a{color:inherit;text-decoration:none}
   transition:.2s ease;
 }
 .btn:hover{color:#fff;border-color:#45454f;background:rgba(255,255,255,.06)}
-.btn .icon{width:12px;height:12px;display:block;flex:0 0 auto}
+.btn .icon{width:15px;height:15px;display:block;flex:0 0 auto}/* ============ 图标大小 ============ */
 .btn-ctf:hover{color:var(--accent);border-color:var(--accent)}
 
 /* ============ 中间主视觉 ============ */
@@ -145,7 +145,7 @@ body.is-ready .footer{opacity:1}
 /* ============ 小屏微调 ============ */
 @media (max-width:520px){
   .topbar{padding:12px 14px}
-  .avatar{width:30px;height:30px}
+  .avatar{width:34px;height:34px}
   .btn{padding:5px 9px;font-size:11px}
   .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}
 }

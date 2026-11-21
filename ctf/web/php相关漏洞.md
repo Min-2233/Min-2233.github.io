@@ -3,7 +3,7 @@ title: PHP 相关漏洞
 date: 2026-11-20
 ---
 
-# PHP 笔记：连接符、数组传参、set_error_handler()
+# PHP 连接符、数组传参、set_error_handler()
 
 创建时间：2026-11-21
 

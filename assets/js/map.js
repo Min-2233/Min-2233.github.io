@@ -1,6 +1,6 @@
 /* ============================================================
    Web 知识地图 · 布局锁定版
-   加载时按"全部展开"量一次尺寸并固定，之后点击不再改变布局
+   加载时按「全部展开」量一次尺寸并写死，之后点击不再改变布局
    ============================================================ */
 (function () {
   var src    = document.getElementById("tree");
@@ -9,7 +9,7 @@
   var canvas = document.getElementById("mapCanvas");
   if (!src || !out || !wrap || !canvas) return;
 
-  /* ---------------- 1. 读数据 ---------------- */
+  /* ================= 1. 读数据 ================= */
   function readLi(li) {
     var det  = li.querySelector(":scope > details");
     var leaf = li.querySelector(":scope > .leaf");
@@ -33,7 +33,7 @@
 
   var rootData = readLi(src.querySelector(":scope > li"));
 
-  /* ---------------- 2. 构建 ---------------- */
+  /* ================= 2. 构建 ================= */
   var moved = 0;
 
   function makeLabel(node) {
@@ -54,7 +54,7 @@
     el.dataset.open = el.dataset.open === "1" ? "0" : "1";
     var d = el.querySelector(".dot");
     if (d) d.setAttribute("aria-expanded", el.dataset.open === "1");
-    // 只切换显隐，不改任何尺寸
+    /* 只切换显隐，不改任何尺寸 → 不会有跳动 */
   }
 
   function buildList(node) {
@@ -143,18 +143,17 @@
   out.appendChild(spine);
   src.style.display = "none";
 
-  /* ---------------- 3. 锁定布局 ---------------- */
+  /* ================= 3. 锁定布局 ================= */
   function lockLayout() {
     var stations = Array.prototype.slice.call(
       spine.querySelectorAll(":scope > .station")
     );
     var lists = Array.prototype.slice.call(spine.querySelectorAll(".in-list"));
 
-    // 全部展开
     stations.forEach(function (s) { s.dataset.open = "1"; });
     lists.forEach(function (s) { s.dataset.open = "1"; });
 
-    // 量高度
+    /* 量上下区最大高度 */
     var maxUp = 0, maxDown = 0;
     stations.forEach(function (st) {
       var up = st.querySelector(":scope > .up");
@@ -162,10 +161,10 @@
       maxUp = Math.max(maxUp, up.scrollHeight);
       maxDown = Math.max(maxDown, down.scrollHeight);
     });
-    spine.style.setProperty("--up", maxUp + "px");
-    spine.style.setProperty("--down", maxDown + "px");
+    out.style.setProperty("--up", maxUp + "px");
+    out.style.setProperty("--down", maxDown + "px");
 
-    // 量宽度（高度固定后再量）
+    /* 高度固定后再量每个站点的宽度 */
     stations.forEach(function (st) {
       var up = st.querySelector(":scope > .up");
       var down = st.querySelector(":scope > .down");
@@ -174,13 +173,12 @@
       st.style.width = w + "px";
     });
 
-    // 收回
     stations.forEach(function (s) { s.dataset.open = "0"; });
     lists.forEach(function (s) { s.dataset.open = "0"; });
   }
   lockLayout();
 
-  /* ---------------- 4. 平移 ---------------- */
+  /* ================= 4. 平移 ================= */
   var cur = { x: 0, y: 0 };
   var target = { x: 0, y: 0 };
   var vx = 0, vy = 0;
@@ -188,9 +186,9 @@
   var dragging = false;
   var lastX = 0, lastY = 0, lastT = 0;
 
-  var MARGIN = 90;
-  var RUBBER = 0.28;
-  var MAX_OUT = 140;
+  var MARGIN  = 140;   /* 四周可多拖的距离 */
+  var RUBBER  = 0.15;  /* 越界阻尼，越小越硬 */
+  var MAX_OUT = 60;    /* 最多能拖出边界多少 */
 
   function limits() {
     var w = wrap.clientWidth, h = wrap.clientHeight;
@@ -220,7 +218,7 @@
                         rubber(cur.y, L.minY, L.maxY) + "px,0)";
   }
 
-  /* 初始：脊线在视口垂直中心 */
+  /* 初始：主线落在视口垂直中心 */
   function centerOnSpine() {
     var core = out.querySelector(".station > .core");
     var h = wrap.clientHeight;
@@ -262,7 +260,8 @@
     var dx = e.clientX - lastX, dy = e.clientY - lastY;
     lastX = e.clientX; lastY = e.clientY;
     moved += Math.abs(dx) + Math.abs(dy);
-    target.x += dx; target.y += dy;
+    target.x += dx;
+    target.y += dy;
 
     var now = performance.now();
     var dt = Math.max(1, now - lastT);
@@ -275,7 +274,7 @@
     if (!dragging) return;
     dragging = false;
     wrap.classList.remove("dragging");
-    clampTarget();                    // 松手 → 弹回范围内
+    clampTarget();
     vx = clamp(vx * 0.5, -30, 30);
     vy = clamp(vy * 0.5, -30, 30);
   }
@@ -287,7 +286,7 @@
     centerOnSpine();
   });
 
-  /* ---------------- 5. 循环 ---------------- */
+  /* ================= 5. 循环 ================= */
   function tick() {
     if (!dragging && (vx || vy)) {
       target.x += vx; target.y += vy;
@@ -295,7 +294,7 @@
       if (Math.abs(vx) < 0.05) vx = 0;
       if (Math.abs(vy) < 0.05) vy = 0;
     }
-    var ease = dragging ? 0.55 : 0.15;
+    var ease = dragging ? 0.55 : 0.12;
     cur.x += (target.x - cur.x) * ease;
     cur.y += (target.y - cur.y) * ease;
     render();

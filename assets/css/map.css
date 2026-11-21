@@ -72,7 +72,6 @@
 /* 上区 / 下区：高度由 JS 锁定，点击不再变化 */
 .station > .up,
 .station > .down{
-  width:100%;
   display:flex;
 }
 .station > .up{

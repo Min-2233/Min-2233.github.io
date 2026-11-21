@@ -150,45 +150,33 @@
     );
     var lists = Array.prototype.slice.call(spine.querySelectorAll(".in-list"));
 
+    /* 全部展开后再量 */
     stations.forEach(function (s) { s.dataset.open = "1"; });
     lists.forEach(function (s) { s.dataset.open = "1"; });
 
-    /* 量上下区最大高度 */
+    /* ① 量高度：直接量子树的 .kids，不能用容器的 scrollHeight
+       （容器高度 0 且子元素向上溢出时，scrollHeight 会返回 0） */
     var maxUp = 0, maxDown = 0;
     stations.forEach(function (st) {
-      var up = st.querySelector(":scope > .up");
-      var down = st.querySelector(":scope > .down");
-      maxUp = Math.max(maxUp, up.scrollHeight);
-      maxDown = Math.max(maxDown, down.scrollHeight);
+      var upKids   = st.querySelector(":scope > .up > .kids");
+      var downKids = st.querySelector(":scope > .down > .kids");
+      if (upKids)   maxUp   = Math.max(maxUp, upKids.offsetHeight);
+      if (downKids) maxDown = Math.max(maxDown, downKids.offsetHeight);
     });
     out.style.setProperty("--up", maxUp + "px");
     out.style.setProperty("--down", maxDown + "px");
 
-    /* 高度固定后再量每个站点的宽度 */
-    stations.forEach(function (st) {
-      var up = st.querySelector(":scope > .up");
-      var down = st.querySelector(":scope > .down");
-      var core = st.querySelector(":scope > .core");
-      var w = Math.max(up.scrollWidth, down.scrollWidth, core.scrollWidth);
-      st.style.width = w + "px";
+    /* ② 高度定好后，量每个站点的自然宽度（先读全部，再统一写） */
+    var widths = stations.map(function (st) { return st.offsetWidth; });
+    stations.forEach(function (st, i) {
+      st.style.width = widths[i] + "px";
     });
 
+    /* 收回 */
     stations.forEach(function (s) { s.dataset.open = "0"; });
     lists.forEach(function (s) { s.dataset.open = "0"; });
   }
   lockLayout();
-
-  /* ================= 4. 平移 ================= */
-  var cur = { x: 0, y: 0 };
-  var target = { x: 0, y: 0 };
-  var vx = 0, vy = 0;
-
-  var dragging = false;
-  var lastX = 0, lastY = 0, lastT = 0;
-
-  var MARGIN  = 140;   /* 四周可多拖的距离 */
-  var RUBBER  = 0.15;  /* 越界阻尼，越小越硬 */
-  var MAX_OUT = 60;    /* 最多能拖出边界多少 */
 
   function limits() {
     var w = wrap.clientWidth, h = wrap.clientHeight;

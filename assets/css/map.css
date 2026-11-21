@@ -1,97 +1,150 @@
 /* ============================================================
-   Web 知识地图：横向树 + 可拖拽画布
+   Web 知识地图：横向脊线 + 悬挂分支
    ============================================================ */
 
-#tree{ display:none }            /* 原始数据隐藏，只当数据源 */
+#tree{ display:none }
 
-.crumb{
-  font-size:11px;
-  letter-spacing:.1em;
-  color:var(--muted);
-}
+.crumb{ font-size:11px; letter-spacing:.1em; color:var(--muted) }
 
 /* ---------- 画布 ---------- */
 .map-wrap{
-  position:fixed;
-  top:64px; left:0; right:0; bottom:0;
-  overflow:hidden;
-  z-index:1;
-  cursor:grab;
-  user-select:none;
-  -webkit-user-select:none;
-  touch-action:none;
+  position:fixed; top:64px; left:0; right:0; bottom:0;
+  overflow:hidden; z-index:1; cursor:grab;
+  user-select:none; -webkit-user-select:none; touch-action:none;
 }
 .map-wrap.dragging{ cursor:grabbing }
 
-.map-canvas{
-  position:absolute;
-  top:0; left:0;
-  padding:40px 60px;
-  will-change:transform;
-}
+.map-canvas{ position:absolute; top:0; left:0; padding:40px 60px; will-change:transform }
 
 /* ---------- 树 ---------- */
-.htree{
+.htree{ display:flex; align-items:flex-start }
+
+.root{ display:flex; align-items:flex-start; position:relative }
+.root > .self{ padding:4px 8px; white-space:nowrap }
+.root > .self > .label{ font-size:15px; font-weight:700; color:#fff; letter-spacing:.03em }
+
+/* 脊线容器：一级分支横排 */
+.kids-spine{
   display:flex;
-  align-items:center;
+  align-items:flex-start;
+  gap:34px;
+  margin-left:34px;
 }
 
-.node{
+/* 一级站点 */
+.on-spine{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.on-spine > .self{
   position:relative;
   display:flex;
   align-items:center;
-}
-
-.self{
-  position:relative;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:5px 10px;
+  gap:9px;
+  padding:4px 8px;
   border-radius:8px;
   white-space:nowrap;
+  cursor:pointer;
   transition:background .16s ease;
 }
-.node.branch > .self{ cursor:pointer }
-.node.branch > .self:hover{ background:rgba(255,255,255,.04) }
+.on-spine > .self:hover{ background:rgba(255,255,255,.04) }
 
-.label{
-  font-size:13px;
-  letter-spacing:.02em;
-  color:#b6b6c0;
-  transition:color .16s ease;
+/* 脊线：站点之间的连线 */
+.on-spine > .self::before{
+  content:"";
+  position:absolute;
+  right:100%;
+  top:50%;
+  width:34px;
+  height:1px;
+  background:var(--line);
 }
-.node.branch > .self > .label{ font-weight:600; color:#dcdce2 }
-.node[data-depth="0"] > .self > .label{ font-size:15px; color:#fff }
-.node[data-depth="1"] > .self > .label{ font-size:14px; color:#e6e6ec }
-.node.branch > .self:hover > .label{ color:#fff }
 
+.on-spine > .self > .label{ font-size:14px; font-weight:600; color:#e2e2e8 }
+.on-spine:hover > .self > .label{ color:#fff }
+
+/* 一级站点的子树：从圆点垂下 */
+.on-spine > .kids{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  margin-left:15px;      /* 对齐圆点中心 */
+  padding-left:26px;
+  border-left:1px solid var(--line);
+}
+.on-spine:not([data-open="1"]) > .kids{ display:none }
+
+/* ---------- 竖向列表节点（第 2 层往下） ---------- */
+.in-list{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+.in-list > .self{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:3px 8px 3px 0;
+  border-radius:8px;
+  white-space:nowrap;
+  cursor:default;
+  transition:background .16s ease;
+}
+.in-list.branch > .self{ cursor:pointer }
+.in-list.branch > .self:hover{ background:rgba(255,255,255,.04) }
+
+/* 连到竖线的横线 */
+.in-list > .self::before{
+  content:"";
+  position:absolute;
+  right:100%;
+  top:50%;
+  width:26px;
+  height:1px;
+  background:var(--line);
+}
+
+.in-list > .self > .label{ font-size:13px; color:#b6b6c0 }
+.in-list.branch > .self > .label{ font-weight:600; color:#dcdce2 }
+.in-list.branch > .self:hover > .label{ color:#fff }
+
+/* 子层容器 */
+.in-list > .kids{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  margin-left:7px;
+  padding-left:26px;
+  border-left:1px solid var(--line);
+}
+.in-list:not([data-open="1"]) > .kids{ display:none }
+
+/* ---------- 计数 ---------- */
 .cnt{
-  font-size:10px;
-  line-height:15px;
-  padding:0 6px;
-  border-radius:9px;
-  color:var(--muted);
+  font-size:10px; line-height:15px; padding:0 6px;
+  border-radius:9px; color:var(--muted);
   background:rgba(255,255,255,.05);
   border:1px solid var(--line);
 }
 
-/* ---------- 圆形开关：压在竖线上 ---------- */
+/* ---------- 圆形开关 ---------- */
 .dot{
-  position:absolute;
-  left:100%;
-  top:50%;
-  margin-left:18px;
-  transform:translateY(-50%);
   width:15px; height:15px;
   padding:0;
   border-radius:50%;
   border:1px solid #3a3a44;
   background:var(--bg);
-  cursor:pointer;
   display:flex;
   align-items:center;
   justify-content:center;
+  flex:0 0 auto;
+  cursor:pointer;
   z-index:3;
   transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
@@ -104,54 +157,13 @@
 }
 .dot:hover{ border-color:#6b6b78 }
 
-/* 展开时轻微发亮 */
-.node[data-open="1"] > .self > .dot{
-  border-color:#8aa0bd;
-  box-shadow:0 0 0 3px rgba(138,160,189,.10),
-             0 0 12px rgba(138,160,189,.45);
-}
-.node[data-open="1"] > .self > .dot::after{
-  background:#d3e2f5;
-  transform:scale(1.1);
-}
-
-/* ---------- 子节点列 + 竖线 ---------- */
-.kids{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  margin-left:26px;
-  padding-left:26px;
-  border-left:1px solid var(--line);
-}
-.node:not([data-open="1"]) > .kids{ display:none }
-
-/* 子节点连到竖线的横线 */
-.kids > .node > .self::before{
-  content:"";
+/* 竖向列表里的圆点：压在竖线上 */
+.in-list > .self > .dot{
   position:absolute;
-  right:100%;
+  left:-33px;
   top:50%;
-  width:26px;
-  height:1px;
-  background:var(--line);
+  transform:translateY(-50%);
 }
 
-/* ---------- 底部提示 ---------- */
-.map-hint{
-  position:fixed;
-  left:50%; bottom:18px;
-  transform:translateX(-50%);
-  z-index:2;
-  margin:0;
-  font-size:11px;
-  letter-spacing:.08em;
-  color:#5c5c66;
-  white-space:nowrap;
-  pointer-events:none;
-}
-
-@media (max-width:520px){
-  .map-wrap{ top:56px }
-  .map-hint{ font-size:10px; bottom:12px }
-}
+/* 展开时轻微发亮 */
+.on-sp

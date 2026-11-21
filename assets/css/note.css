@@ -181,3 +181,45 @@
 
 
 }
+
+/* 大标题：下方留足空间 */
+.article h1{
+  margin-bottom:1.2em;   /* 30px 字号下约 36px */
+}
+
+
+/* 大标题 */
+.article h1{
+  margin-top:0;
+  margin-bottom:1.2em;
+  line-height:1.4;
+}
+
+/* 小标题 */
+.article h2{
+  margin-top:2em;
+  margin-bottom:.8em;
+  line-height:1.4;
+}
+
+.article h3{
+  margin-top:1.8em;
+  margin-bottom:.6em;
+  line-height:1.4;
+}
+
+/* 正文 */
+.article p{
+  margin:1em 0;
+  line-height:1.8;
+}
+
+/* 代码块 */
+.article pre{
+  margin:1.5em 0;
+}
+
+/* 表格 */
+.article table{
+  margin-bottom:1.5em;
+}

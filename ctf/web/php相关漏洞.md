@@ -58,7 +58,7 @@ $b = $a . 'aaa';                                 // 这里出错时才会进 han
 
 观察源码就知道正常情况下过不了if的，所以只能利用 `set_error_handler()`中的方法，打印出flag。
 
-- **解题思路**：在传参时传入`ctf[]=1` 由于数组和flag连通会报错，触发`set_error_handler()`那么就顺利打印出flag了。
+- **解题思路**：在传参时传入`ctf[]=1` 由于数组和flag连通会报错，触发`set_error_handler()`，那么就顺利打印出flag了。
 
 
 

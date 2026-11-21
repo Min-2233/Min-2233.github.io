@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web 知识地图 · Min2233</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/home.css">
+<link rel="stylesheet" href="/assets/css/map.css">
+</head>
+<body class="is-ready">
+
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <pattern id="hex" width="90" height="52" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="1">
+        <path d="M30 0 L15 26 L-15 26 L-30 0 L-15 -26 L15 -26 Z"/>
+        <path d="M75 26 L60 52 L30 52 L15 26 L30 0 L60 0 Z"/>
+        <path d="M120 0 L105 26 L75 26 L60 0 L75 -26 L105 -26 Z"/>
+        <path d="M30 52 L15 78 L-15 78 L-30 52 L-15 26 L15 26 Z"/>
+        <path d="M120 52 L105 78 L75 78 L60 52 L75 26 L105 26 Z"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#hex)"/>
+</svg>
+<div class="bg-veil"></div>
+
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="btn" href="/">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3 5 8l5 5"/>
+      </svg>
+      <span>返回</span>
+    </a>
+    <span class="crumb">~/map</span>
+  </div>
+  <div class="topbar-right">
+    <a class="btn" href="/ctf/web/"><span>CTF</span></a>
+  </div>
+</header>
+
+<div class="map-wrap" id="mapWrap">
+  <div class="map-canvas" id="mapCanvas">
+<ul id="tree"><li class="n l0"><details open><summary style="--c:#666"><span class="t">CTF / Web 安全</span><span class="cnt">8</span></summary><ul><li class="n l1"><details open><summary style="--c:#e5484d"><span class="t">01 公共基础</span><span class="cnt">4</span></summary><ul><li class="n l2"><div class="leaf" style="--c:#e5484d"><span class="t">导言课</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#e5484d"><span class="t">Linux 基本操作（Bash）</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#e5484d"><span class="t">Python 入门</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#e5484d"><span class="t">计算机网络</span></div></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#f76b15"><span class="t">02 Web 基础入门</span><span class="cnt">6</span></summary><ul><li class="n l2"><div class="leaf" style="--c:#f76b15"><span class="t">PHP 基础</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#f76b15"><span class="t">HTML / JS / CSS 基础</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#f76b15"><span class="t">数据库基础</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#f76b15"><span class="t">HTTP 请求基础</span></div></li>
+<li class="n l2"><details open><summary style="--c:#f76b15"><span class="t">网站服务器基础</span><span class="cnt">4</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#f76b15"><span class="t">Apache</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f76b15"><span class="t">Nginx</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f76b15"><span class="t">IIS</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f76b15"><span class="t">Tomcat</span></div></li></ul></details></li>
+<li class="n l2"><div class="leaf" style="--c:#f76b15"><span class="t">OWASP Top 10 速览</span></div></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#f5b800"><span class="t">03 信息收集与信息泄露</span><span class="cnt">4</span></summary><ul><li class="n l2"><details open><summary style="--c:#f5b800"><span class="t">社工</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">个人信息搜集</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">whois / dig 查询域名信息</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">社工库查询</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#f5b800"><span class="t">HTTP 请求</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">XFF 等来源头伪造</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">UA 头伪造</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">返回头分析</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#f5b800"><span class="t">爆破</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">常规爆破</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">Hash 生日攻击</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">验证码识别</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#f5b800"><span class="t">文件泄露</span><span class="cnt">3</span></summary><ul><li class="n l3"><details open><summary style="--c:#f5b800"><span class="t">类型</span><span class="cnt">5</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#f5b800"><span class="t">robots.txt</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#f5b800"><span class="t">.git 泄露</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#f5b800"><span class="t">.svn 泄露</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#f5b800"><span class="t">.swp 泄露</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#f5b800"><span class="t">备份文件泄露</span></div></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">泄露源码分析</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#f5b800"><span class="t">扫描器使用及结果分析</span></div></li></ul></details></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#3ba55d"><span class="t">04 PHP 安全</span><span class="cnt">9</span></summary><ul><li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">语言特性</span><span class="cnt">3</span></summary><ul><li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">弱类型</span><span class="cnt">5</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">弱类型</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">类型转换</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">Hash 比较</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">十六进制转换</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">数组绕过</span></div></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">“+”和“.”解析</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">小特点梳理</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">变量覆盖</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">$$ 使用</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">extract 函数</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">parse_str 函数</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">反序列化</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">基础概念与操作</span></div></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">利用方式</span><span class="cnt">3</span></summary><ul><li class="n l4"><details open><summary style="--c:#3ba55d"><span class="t">找到反序列化点</span><span class="cnt">4</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">__wakeup 绕过</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">__destruct 构造链条</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">Session 反序列化</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">Phar 反序列化</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#3ba55d"><span class="t">找到调用链</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">内部类利用 → SoapClient → SSRF</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">配合其他类的同名方法</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">代码审计</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">伪协议</span><span class="cnt">2</span></summary><ul><li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">协议概念</span><span class="cnt">4</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">file://</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">php://</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">data://</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">phar://（反序列化）</span></div></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">触发点找寻利用 → 协议间组合</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">代码 / 命令执行</span><span class="cnt">4</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">基础概念</span></div></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">类型</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">执行 PHP 命令的函数</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">执行系统命令的函数</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">语法特性</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">反引号</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">PHP7 的 $()</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">disable_function 绕过</span><span class="cnt">6</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">LD_PRELOAD</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">ImageMagick</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">PHP-FPM 端口</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">.htaccess</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">pcntl_exec</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">PHP 本身漏洞 → 蚁剑</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">文件包含</span><span class="cnt">4</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">基础概念</span></div></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">本地文件包含</span><span class="cnt">7</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">任意文件读取</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">包含日志 Getshell</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">Session</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">上传临时文件</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">environ + User-Agent 头</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">自己上传的文件</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">伪协议（复习）</span></div></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">远程文件包含</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">绕过限制方法</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">框架漏洞</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">ThinkPHP</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">Laravel</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">模板注入</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3ba55d"><span class="t">基础概念及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">对模板引擎语法的利用</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">Smarty</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">Blade</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">Twig</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3ba55d"><span class="t">代码混淆</span><span class="cnt">2</span></summary><ul><li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">混淆器</span><span class="cnt">2</span></summary><ul><li class="n l4"><details open><summary style="--c:#3ba55d"><span class="t">有扩展</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">ZendGuard</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">php-beast</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#3ba55d"><span class="t">无扩展</span><span class="cnt">3</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">phpjiami</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">zhaoyuanma</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3ba55d"><span class="t">自创加密</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#3ba55d"><span class="t">解混淆</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">利用脚本</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3ba55d"><span class="t">AST 分析，编写解码器</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#0aa2c0"><span class="t">05 Python 安全</span><span class="cnt">4</span></summary><ul><li class="n l2"><details open><summary style="--c:#0aa2c0"><span class="t">Python Web 开发基础知识</span><span class="cnt">1</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#0aa2c0"><span class="t">Flask</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#0aa2c0"><span class="t">反序列化</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#0aa2c0"><span class="t">基础概念和原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#0aa2c0"><span class="t">利用</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#0aa2c0"><span class="t">Pickle</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#0aa2c0"><span class="t">cPickle</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#0aa2c0"><span class="t">命令执行 / 沙箱逃逸</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#0aa2c0"><span class="t">基础概念</span></div></li>
+<li class="n l3"><details open><summary style="--c:#0aa2c0"><span class="t">利用方式</span><span class="cnt">1</span></summary><ul><li class="n l4"><details open><summary style="--c:#0aa2c0"><span class="t">限制绕过方式</span><span class="cnt">5</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#0aa2c0"><span class="t">花式 import</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#0aa2c0"><span class="t">字符串组合</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#0aa2c0"><span class="t">恢复 sys.modules</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#0aa2c0"><span class="t">builtins、builtin 与 builtins</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#0aa2c0"><span class="t">文件读写</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#0aa2c0"><span class="t">模板注入</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#0aa2c0"><span class="t">基础概念及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#0aa2c0"><span class="t">对模板引擎语法的利用</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#0aa2c0"><span class="t">Jinja2</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#0aa2c0"><span class="t">Django</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#0aa2c0"><span class="t">Tornado</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#3e63dd"><span class="t">06 Java 安全</span><span class="cnt">4</span></summary><ul><li class="n l2"><div class="leaf" style="--c:#3e63dd"><span class="t">基础语法</span></div></li>
+<li class="n l2"><div class="leaf" style="--c:#3e63dd"><span class="t">Spring Boot 使用</span></div></li>
+<li class="n l2"><details open><summary style="--c:#3e63dd"><span class="t">反序列化</span><span class="cnt">2</span></summary><ul><li class="n l3"><details open><summary style="--c:#3e63dd"><span class="t">基础概念及原理</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3e63dd"><span class="t">ObjectInputStream</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#3e63dd"><span class="t">利用</span><span class="cnt">3</span></summary><ul><li class="n l4"><details open><summary style="--c:#3e63dd"><span class="t">找到反序列化点</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3e63dd"><span class="t">Fastjson AutoType</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#3e63dd"><span class="t">交换信息时反序列化</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#3e63dd"><span class="t">观察组件</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3e63dd"><span class="t">ApacheCommons</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#3e63dd"><span class="t">生成 Payload</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#3e63dd"><span class="t">ysoserial</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#3e63dd"><span class="t">模板注入</span><span class="cnt">2</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#3e63dd"><span class="t">基础概念及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#3e63dd"><span class="t">对模板引擎语法的利用</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#3e63dd"><span class="t">JSP</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3e63dd"><span class="t">FreeMarker</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#3e63dd"><span class="t">Velocity</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#8e4ec6"><span class="t">07 小众语言：Node / Ruby</span><span class="cnt">2</span></summary><ul><li class="n l2"><details open><summary style="--c:#8e4ec6"><span class="t">Node</span><span class="cnt">7</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#8e4ec6"><span class="t">Node 基础</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#8e4ec6"><span class="t">Express 使用</span></div></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">命令执行</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">利用方式</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">原型链污染</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念及原理</span></div></li>
+<li class="n l4"><details open><summary style="--c:#8e4ec6"><span class="t">漏洞点</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">merge</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">利用方式</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">大小写特性</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念</span></div></li>
+<li class="n l4"><details open><summary style="--c:#8e4ec6"><span class="t">漏洞点</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">toUpperCase</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">toLowerCase</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">利用方式</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">vm 沙箱逃逸</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">利用方式</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">模板注入</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念及原理</span></div></li>
+<li class="n l4"><details open><summary style="--c:#8e4ec6"><span class="t">对模板引擎语法的利用</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">EJS</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">Jade</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#8e4ec6"><span class="t">Ruby</span><span class="cnt">4</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#8e4ec6"><span class="t">Ruby 基础</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#8e4ec6"><span class="t">Ruby on Rails 使用</span></div></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">全局变量</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">利用方式</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#8e4ec6"><span class="t">模板注入</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#8e4ec6"><span class="t">基础概念及原理</span></div></li>
+<li class="n l4"><details open><summary style="--c:#8e4ec6"><span class="t">对模板引擎语法的利用</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#8e4ec6"><span class="t">ERB</span></div></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l1"><details open><summary style="--c:#d6409f"><span class="t">08 常见 Web 漏洞</span><span class="cnt">10</span></summary><ul><li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">SQL 注入</span><span class="cnt">6</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理 / 成因</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">数据库类型判别</span><span class="cnt">2</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">类型</span><span class="cnt">5</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">MySQL</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Postgres</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">MongoDB</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">SQL Server</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Oracle</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">方法</span><span class="cnt">4</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">符号</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">报错</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">函数</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">本身特性</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">常见符号、函数介绍</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">sys 系统库</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">基础</span><span class="cnt">2</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">select</span><span class="cnt">2</span></summary><ul><li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">有回显</span><span class="cnt">1</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">联合注入查询</span></div></li></ul></details></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">无回显</span><span class="cnt">2</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">报错注入</span></div></li>
+<li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">盲注</span><span class="cnt">2</span></summary><ul><li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">布尔盲注</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">时间盲注</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">其他 → 当做无回显 select 处理</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">进阶</span><span class="cnt">14</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">绕过 WAF</span><span class="cnt">7</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">and / or 被拦截</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">空格被过滤 / 拦截</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">括号被过滤 / 拦截</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">逗号被过滤 / 拦截</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">其他关键字被过滤 / 拦截</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">单双引号被过滤 / 拦截 / 转义</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">数字被过滤 / 拦截</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">编码</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">宽字节注入</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">原理 → Latin1 默认编码</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">报错注入</span><span class="cnt">11</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">exp( )</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">updatexml( )</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">extractvalue( )</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">rand( )+group( )+count( )</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">几何函数</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">不存在的函数</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Bigint 数值操作</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">name_const</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">uuid 相关函数</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">join / using( ) 注列名</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">GTID 相关函数</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">文件操作</span><span class="cnt">2</span></summary><ul><li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">读</span><span class="cnt">2</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">低权限读文件</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">命令客户端读取文件</span></div></li></ul></details></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">写</span><span class="cnt">1</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">日志 → Getshell</span></div></li></ul></details></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">DNSLOG 带出数据</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">二次注入</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">order by 比较盲注</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">约束攻击</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">堆叠注入</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">结合数据库语言本身特性</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">PHP /union.+?select/ig 绕过</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">无列名盲注</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">UPDATE 注入重复字段赋值</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">LIMIT 之后的字段数判断</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">UDF 提权</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方法</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">预编译语句</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">XSS</span><span class="cnt">5</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理 / 成因</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">分类</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">反射型 XSS</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">存储型 XSS</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">DOM XSS</span><span class="cnt">1</span></summary><ul><li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">漏洞点</span><span class="cnt">2</span></summary><ul><li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">输入</span><span class="cnt">3</span></summary><ul><li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">资料编辑</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">留言板</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">html</span></div></li></ul></details></li>
+<li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">输出</span><span class="cnt">2</span></summary><ul><li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">事件</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">属性</span></div></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">常见标签</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">利用</span><span class="cnt">5</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">过滤空格</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">过滤关键字</span><span class="cnt">5</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">大小写绕过</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">双写关键字</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">字符拼接</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">其他字符混淆</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">编码绕过</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">绕过 WAF</span><span class="cnt">2</span></summary><ul><li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">过滤符号</span><span class="cnt">3</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">双引号</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">单引号</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">括号</span></div></li></ul></details></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">过滤 URL 地址</span><span class="cnt">2</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">URL 编码</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">IP</span></div></li></ul></details></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">electron 中的利用</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">浏览器缺陷 → 关注最新姿势</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方法</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">不要相信用户输入</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">正确设置 Cookie 的 HttpOnly</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">正确配置网站服务器 → CSP 策略</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">文件上传</span><span class="cnt">5</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理 / 成因</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">漏洞点</span><span class="cnt">6</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">上传头像</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">上传相册</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">上传附件</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">添加文章图片</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">前台留言资料上传</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">编辑器文件上传</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">前端</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">JS 检查绕过</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">利用</span><span class="cnt">1</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">后端</span><span class="cnt">3</span></summary><ul><li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">检查后缀</span><span class="cnt">2</span></summary><ul><li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">黑名单</span><span class="cnt">6</span></summary><ul><li class="n l7"><details open><summary style="--c:#d6409f"><span class="t">上传特殊可解析后缀</span><span class="cnt">2</span></summary><ul><li class="n l8"><div class="leaf" style="--c:#d6409f"><span class="t">PHP3/4/5</span></div></li>
+<li class="n l8"><div class="leaf" style="--c:#d6409f"><span class="t">SHTML</span></div></li></ul></details></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">上传 .htaccess</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">后缀大小写绕过</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">点绕过</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">空格绕过</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">::$DATA 绕过</span></div></li></ul></details></li>
+<li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">白名单</span><span class="cnt">6</span></summary><ul><li class="n l7"><details open><summary style="--c:#d6409f"><span class="t">配合解析漏洞</span><span class="cnt">3</span></summary><ul><li class="n l8"><div class="leaf" style="--c:#d6409f"><span class="t">Apache</span></div></li>
+<li class="n l8"><div class="leaf" style="--c:#d6409f"><span class="t">Nginx</span></div></li>
+<li class="n l8"><div class="leaf" style="--c:#d6409f"><span class="t">IIS</span></div></li></ul></details></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">双后缀名绕过</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">MIME 绕过</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">%00 截断</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">0x00 截断</span></div></li>
+<li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">0x0a 截断</span></div></li></ul></details></li></ul></details></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">检查内容</span><span class="cnt">4</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">文件头检查</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">突破 getimagesize( )</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">突破 exif_imagetype( )</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">二次渲染</span></div></li></ul></details></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">其他</span><span class="cnt">2</span></summary><ul><li class="n l6"><details open><summary style="--c:#d6409f"><span class="t">花式构造 WebShell</span><span class="cnt">1</span></summary><ul><li class="n l7"><div class="leaf" style="--c:#d6409f"><span class="t">异或构造</span></div></li></ul></details></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">条件竞争</span></div></li></ul></details></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方式</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">不要相信用户输入</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">SSRF</span><span class="cnt">5</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理 / 成因</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">漏洞点</span><span class="cnt">9</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">社交分享功能</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">转码服务</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">在线翻译</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">图片加载 / 下载</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">图片 / 文章收藏功能</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">云服务厂商</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">网站采集</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">数据库内置功能</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">邮件系统</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">漏洞验证</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">抓包</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">DNSLOG</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">利用方式</span><span class="cnt">5</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">服务器访问</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">内网探测</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">文件读取</span><span class="cnt">4</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">file://</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">dict://</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">gopher://</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">ftp://</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">攻击内网应用</span><span class="cnt">3</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Web</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Redis</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">MySQL</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">DoS 攻击</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方式</span><span class="cnt">4</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">不要轻信用户输入</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">禁止跳转</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">禁用不需要的协议</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">黑 / 白名单</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">CSRF</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">漏洞点</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">通常为 GET 方式请求</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">源站不验证请求的合法性</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">伪造成以用户身份操作</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方式</span><span class="cnt">4</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">请求里加 Token</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">重要请求不要用 GET 方式</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">Referer 验证</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">验证码</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">JSONP</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">利用方式</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">泄露隐私</span></div></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方法</span><span class="cnt">4</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">验证 Token</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">Referer 验证</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">正确配置输出格式及编码</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">严格过滤输出</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">XXE</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">利用</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">XML</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">按语言</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">PHP</span></div></li>
+<li class="n l5"><details open><summary style="--c:#d6409f"><span class="t">Java</span><span class="cnt">2</span></summary><ul><li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">1.8-</span></div></li>
+<li class="n l6"><div class="leaf" style="--c:#d6409f"><span class="t">1.8+</span></div></li></ul></details></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">按方式</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">有回显</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">无回显</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方式</span><span class="cnt">1</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">禁止外部实体解析</span></div></li></ul></details></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">Windows 相关</span><span class="cnt">4</span></summary><ul><li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">Aspx</span><span class="cnt">3</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">基础语法</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">漏洞</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">ViewState 反序列化</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">表现</span><span class="cnt">1</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">&lt;作为*</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">文件通配符特性</span><span class="cnt">1</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">利用</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">敏感信息泄露</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">覆盖文件</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">IIS 漏洞</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">解析漏洞</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">短文件名暴力猜解漏洞</span></div></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">文件上传 → NTFS 流绕过</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">逻辑漏洞</span><span class="cnt">3</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">分类</span><span class="cnt">3</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">权限控制</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">越权读取</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">越权修改</span></div></li></ul></details></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">业务逻辑（薅羊毛）</span></div></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">数据校验</span><span class="cnt">2</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">负数 / 超大数</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">修改操作目标</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">防御方式 → 程序员理清思路，对逻辑深加思考打磨</span></div></li></ul></details></li>
+<li class="n l2"><details open><summary style="--c:#d6409f"><span class="t">NOSQL 注入</span><span class="cnt">4</span></summary><ul><li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">MongoDB 基本操作</span></div></li>
+<li class="n l3"><div class="leaf" style="--c:#d6409f"><span class="t">基础概念以及原理</span></div></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">分类</span><span class="cnt">2</span></summary><ul><li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">按语言</span><span class="cnt">3</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">PHP / Ruby 数组注入</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">JS 注入</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">Mongo Shell 注入</span></div></li></ul></details></li>
+<li class="n l4"><details open><summary style="--c:#d6409f"><span class="t">按攻击机制</span><span class="cnt">4</span></summary><ul><li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">永真式</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">联合查询</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">JS 注入</span></div></li>
+<li class="n l5"><div class="leaf" style="--c:#d6409f"><span class="t">盲注</span></div></li></ul></details></li></ul></details></li>
+<li class="n l3"><details open><summary style="--c:#d6409f"><span class="t">防御方式</span><span class="cnt">2</span></summary><ul><li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">不要相信用户的输入</span></div></li>
+<li class="n l4"><div class="leaf" style="--c:#d6409f"><span class="t">禁止使用危险操作</span></div></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li></ul>
+    <div class="htree" id="htree"></div>
+
+  </div>
+</div>
+
+<p class="map-hint">拖拽空白处平移 · 滚轮左右浏览 · 双击回到原点</p>
+
+<script src="/assets/js/map.js"></script>
+</body>
+</html>

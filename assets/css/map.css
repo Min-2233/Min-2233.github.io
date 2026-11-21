@@ -1,0 +1,157 @@
+/* ============================================================
+   Web 知识地图：横向树 + 可拖拽画布
+   ============================================================ */
+
+#tree{ display:none }            /* 原始数据隐藏，只当数据源 */
+
+.crumb{
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+
+/* ---------- 画布 ---------- */
+.map-wrap{
+  position:fixed;
+  top:64px; left:0; right:0; bottom:0;
+  overflow:hidden;
+  z-index:1;
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+  touch-action:none;
+}
+.map-wrap.dragging{ cursor:grabbing }
+
+.map-canvas{
+  position:absolute;
+  top:0; left:0;
+  padding:40px 60px;
+  will-change:transform;
+}
+
+/* ---------- 树 ---------- */
+.htree{
+  display:flex;
+  align-items:center;
+}
+
+.node{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.self{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:5px 10px;
+  border-radius:8px;
+  white-space:nowrap;
+  transition:background .16s ease;
+}
+.node.branch > .self{ cursor:pointer }
+.node.branch > .self:hover{ background:rgba(255,255,255,.04) }
+
+.label{
+  font-size:13px;
+  letter-spacing:.02em;
+  color:#b6b6c0;
+  transition:color .16s ease;
+}
+.node.branch > .self > .label{ font-weight:600; color:#dcdce2 }
+.node[data-depth="0"] > .self > .label{ font-size:15px; color:#fff }
+.node[data-depth="1"] > .self > .label{ font-size:14px; color:#e6e6ec }
+.node.branch > .self:hover > .label{ color:#fff }
+
+.cnt{
+  font-size:10px;
+  line-height:15px;
+  padding:0 6px;
+  border-radius:9px;
+  color:var(--muted);
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+}
+
+/* ---------- 圆形开关：压在竖线上 ---------- */
+.dot{
+  position:absolute;
+  left:100%;
+  top:50%;
+  margin-left:18px;
+  transform:translateY(-50%);
+  width:15px; height:15px;
+  padding:0;
+  border-radius:50%;
+  border:1px solid #3a3a44;
+  background:var(--bg);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:3;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.dot::after{
+  content:"";
+  width:5px; height:5px;
+  border-radius:50%;
+  background:#4b4b55;
+  transition:background .2s ease, transform .2s ease;
+}
+.dot:hover{ border-color:#6b6b78 }
+
+/* 展开时轻微发亮 */
+.node[data-open="1"] > .self > .dot{
+  border-color:#8aa0bd;
+  box-shadow:0 0 0 3px rgba(138,160,189,.10),
+             0 0 12px rgba(138,160,189,.45);
+}
+.node[data-open="1"] > .self > .dot::after{
+  background:#d3e2f5;
+  transform:scale(1.1);
+}
+
+/* ---------- 子节点列 + 竖线 ---------- */
+.kids{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  margin-left:26px;
+  padding-left:26px;
+  border-left:1px solid var(--line);
+}
+.node:not([data-open="1"]) > .kids{ display:none }
+
+/* 子节点连到竖线的横线 */
+.kids > .node > .self::before{
+  content:"";
+  position:absolute;
+  right:100%;
+  top:50%;
+  width:26px;
+  height:1px;
+  background:var(--line);
+}
+
+/* ---------- 底部提示 ---------- */
+.map-hint{
+  position:fixed;
+  left:50%; bottom:18px;
+  transform:translateX(-50%);
+  z-index:2;
+  margin:0;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:#5c5c66;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+@media (max-width:520px){
+  .map-wrap{ top:56px }
+  .map-hint{ font-size:10px; bottom:12px }
+}

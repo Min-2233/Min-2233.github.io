@@ -1,13 +1,11 @@
 /* ============================================================
-   Web 知识地图
-   脊线居中 · 分支上下交替 · 自由拖动 · 滚轮缩放
+   Web 知识地图 · 布局锁定版
    ============================================================ */
 
 #tree{ display:none }
 
 .crumb{ font-size:11px; letter-spacing:.1em; color:var(--muted) }
 
-/* ---------- 画布 ---------- */
 .map-wrap{
   position:fixed; top:64px; left:0; right:0; bottom:0;
   overflow:hidden; z-index:1; cursor:grab;
@@ -22,7 +20,6 @@
   will-change:transform;
 }
 
-/* ---------- 骨架 ---------- */
 .htree{ display:flex; align-items:center }
 
 .root{ flex:0 0 auto }
@@ -31,7 +28,6 @@
   letter-spacing:.03em; white-space:nowrap;
 }
 
-/* 脊线：一号到八号站点横向排列 */
 .spine{
   display:flex;
   align-items:flex-start;
@@ -47,44 +43,45 @@
   align-items:flex-start;
 }
 
-/* 上区 / 下区：等高，保证脊线水平 */
-.station > .up{
-  height:var(--h, 0px);
+.station > .up,
+.station > .down{
+  width:100%;
   display:flex;
+}
+.station > .up{
+  height:var(--up, 0px);
   align-items:flex-end;
 }
 .station > .down{
-  height:var(--h, 0px);
-  display:flex;
+  height:var(--down, 0px);
   align-items:flex-start;
 }
 
-/* 站点核心：圆点 + 标签，垂直居中 */
 .station > .core{
+  position:relative;
   height:34px;
   display:flex;
   align-items:center;
   gap:9px;
   white-space:nowrap;
-  position:relative;
+  cursor:pointer;
 }
-.station > .core{ cursor:pointer }
 .station > .core:hover > .label{ color:#fff }
+
+.station > .core > .label{
+  font-size:14px; font-weight:600; color:#e2e2e8;
+  transition:color .16s ease;
+}
 
 /* 站点之间的连线 */
 .station::before{
   content:"";
   position:absolute;
   right:100%;
-  top:calc(var(--h, 0px) + 17px);
+  top:calc(var(--up, 0px) + 17px);
   width:46px;
   height:1px;
   background:var(--line);
-}
-
-.station > .core > .label{
-  font-size:14px; font-weight:600; color:#e2e2e8;
-  transition:color .16s ease;
 }
 
 /* ---------- 子树 ---------- */
@@ -97,11 +94,9 @@
 .station > .up > .kids,
 .station > .down > .kids,
 .in-list > .kids{
-  margin-left:7px;      /* 对齐圆点中心 */
+  margin-left:7px;
   padding-left:26px;
 }
-
-/* 向上的分支：从下往上长 */
 .station.up > .up > .kids{ flex-direction:column-reverse }
 
 .station[data-open="0"] .kids{ display:none }
@@ -127,7 +122,6 @@
 .in-list.branch > .self{ cursor:pointer }
 .in-list.branch > .self:hover{ background:rgba(255,255,255,.04) }
 
-/* 连到上级竖线的横线 */
 .in-list > .self::before{
   content:"";
   position:absolute;
@@ -142,16 +136,17 @@
 .in-list.branch > .self > .label{ font-weight:600; color:#dcdce2 }
 .in-list.branch > .self:hover > .label{ color:#fff }
 
+.in-list[data-open="0"] > .kids{ display:none }
+
 /* ---------- 计数 ---------- */
 .cnt{
   font-size:10px; line-height:15px; padding:0 6px;
-  border-radius:9px;
-  color:var(--muted);
+  border-radius:9px; color:var(--muted);
   background:rgba(255,255,255,.05);
   border:1px solid var(--line);
 }
 
-/* ---------- 圆形开关 ---------- */
+/* ---------- 圆点 ---------- */
 .dot{
   flex:0 0 auto;
   width:15px; height:15px;
@@ -175,27 +170,8 @@
 }
 .dot:hover{ border-color:#6b6b78 }
 
-/* 展开时轻微发亮 */
 .station[data-open="1"] > .core > .dot,
 .in-list[data-open="1"] > .self > .dot{
   border-color:#8aa0bd;
   box-shadow:0 0 0 3px rgba(138,160,189,.10),
-             0 0 12px rgba(138,160,189,.45);
-}
-.station[data-open="1"] > .core > .dot::after,
-.in-list[data-open="1"] > .self > .dot::after{
-  background:#d3e2f5;
-  transform:scale(1.1);
-}
-
-/* ---------- 提示 ---------- */
-.map-hint{
-  position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-  z-index:2; margin:0; font-size:11px; letter-spacing:.08em;
-  color:#5c5c66; white-space:nowrap; pointer-events:none;
-}
-
-@media (max-width:520px){
-  .map-wrap{ top:56px }
-  .map-hint{ font-size:10px; bottom:12px }
-}
+             0 0 12px rgba(138,

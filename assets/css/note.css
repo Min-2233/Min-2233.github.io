@@ -177,3 +177,31 @@
 .highlight .gd{color:#f07178}
 .highlight .gi{color:#c3e88d}
 .highlight .err{color:#ff5370;background:none}
+
+
+/* ===== 代码块复制按钮 ===== */
+.code-wrap{position:relative}
+
+.code-copy{
+  position:absolute;
+  top:8px; right:8px;
+  padding:3px 9px;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.4;
+  color:var(--muted);
+  background:rgba(255,255,255,.07);
+  border:1px solid transparent;
+  border-radius:5px;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity .18s ease, color .18s ease,
+             background .18s ease, border-color .18s ease;
+}
+.code-wrap:hover .code-copy{opacity:1}
+.code-copy:hover{color:#fff;background:rgba(255,255,255,.12);border-color:#45454f}
+.code-copy.done{color:#8ad39a;border-color:#3d5c44}
+
+@media (hover:none){
+  .code-copy{opacity:1}
+}

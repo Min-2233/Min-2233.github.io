@@ -1,0 +1,72 @@
+---
+layout: null
+---
+{%- assign notes = site.pages
+      | where_exp: "p", "p.path contains 'ctf/web/menu/php安全/'"
+      | where_exp: "p", "p.name != 'index.html'"
+      | sort: "date" | reverse -%}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PHP 安全 · Min2233</title>
+<link rel="stylesheet" href="/assets/css/home.css">
+<link rel="stylesheet" href="/assets/css/notes.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+</head>
+<body class="is-ready">
+<!-- ===== 背景（和首页一致） ===== -->
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <pattern id="hex" width="90" height="52" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="1">
+        <path d="M30 0 L15 26 L-15 26 L-30 0 L-15 -26 L15 -26 Z"/>
+        <path d="M75 26 L60 52 L30 52 L15 26 L30 0 L60 0 Z"/>
+        <path d="M120 0 L105 26 L75 26 L60 0 L75 -26 L105 -26 Z"/>
+        <path d="M30 52 L15 78 L-15 78 L-30 52 L-15 26 L15 26 Z"/>
+        <path d="M120 52 L105 78 L75 78 L60 52 L75 26 L105 26 Z"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#hex)"/>
+</svg>
+<div class="bg-veil"></div>
+<!-- ===== 顶栏 ===== -->
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="btn" href="/ctf/web/menu/">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M10 3 5 8l5 5"/>
+      </svg>
+      <span>返回</span>
+    </a>
+    <span class="crumb">~/ctf/web/menu/php安全</span>
+  </div>
+  <div class="topbar-right">
+    <a class="btn" href="https://github.com/Min-2233" target="_blank" rel="noopener">
+      <span>GitHub</span>
+    </a>
+  </div>
+</header>
+<!-- ===== 列表 ===== -->
+<main class="notes">
+  <h1 class="notes-title">PHP 安全<span class="cursor" aria-hidden="true"></span></h1>
+  <p class="notes-sub">PHP 相关 · 共 {{ notes.size }} 篇</p>
+  <ul class="list">
+{% for note in notes %}
+    <li>
+      <a class="item" href="{{ note.url | relative_url }}">
+        <span class="idx">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+        <span class="name">{{ note.title | default: note.name }}</span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </li>
+{% endfor %}
+  </ul>
+</main>
+<footer class="footer">© 2026 Min2233</footer>
+</body>
+</html>

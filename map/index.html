@@ -511,6 +511,43 @@
   }
 
  
+  /* ---------- 树干：父节点 → 最后一个「直接子项」的标题行中心 ----------
+     只认直接子项自己的 .self 那一行（不是整个容器），
+     所以子层再展开也不会把线拖长；每次点开/收起都重算。 */
+  function measureTrunks() {
+    Array.prototype.forEach.call(spine.querySelectorAll(".kids"), function (k) {
+      if (!k.offsetHeight) return;                 /* 自己或祖先被折叠，跳过 */
+
+      var rows = [];
+      for (var i = 0; i < k.children.length; i++) {
+        if (k.children[i].offsetHeight) rows.push(k.children[i]);
+      }
+      if (!rows.length) return;
+
+      /* 子项可能自己展开了子树（容器很高），端点要对准它的标题行 */
+      function headY(row) {
+        var self = row.querySelector(":scope > .self");
+        if (!self) return row.offsetTop + row.offsetHeight / 2;
+        return row.offsetTop + self.offsetTop + self.offsetHeight / 2;
+      }
+
+      var c1 = headY(rows[0]);
+      var c2 = headY(rows[rows.length - 1]);
+      var upSide = k.parentNode && k.parentNode.classList.contains("up");
+
+      if (upSide) {
+        /* 向上的分支：上端停在最上面那项的中心，下端贴住圆点那一侧 */
+        var t = Math.min(c1, c2);
+        k.style.setProperty("--vt", t + "px");
+        k.style.setProperty("--vh", Math.max(0, k.offsetHeight - t) + "px");
+      } else {
+        /* 向下的分支：上端贴住父节点，下端停在最后一项的中心 */
+        k.style.setProperty("--vt", "0px");
+        k.style.setProperty("--vh", Math.max(c1, c2) + "px");
+      }
+    });
+  }
+
   
   /* ---------- 一次性锁定横向宽度 + 树干（保证主线永不变形） ---------- */
   function lockAll() {
@@ -555,6 +592,9 @@
     if (d) d.setAttribute("aria-expanded", el.dataset.open === "1");
 
     measureHeights();
+    measureTrunks();          /* 展开/收起后立刻重算，避免线留长 */
+
+    var after = coreY();
 
     var after = coreY();
     var dy = before - after;

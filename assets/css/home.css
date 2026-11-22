@@ -208,13 +208,35 @@ body.is-ready .footer{opacity:1}
   .btn{padding:5px 9px;font-size:11px}
   .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}
 }
-/* 本标签页已看过开场：直接显示主页 */
+/* 本标签页已看过开场：只关掉开场层。
+   正文不要在这里强制显示，否则「有时有淡入、有时瞬间出现」 */
 html.no-splash #splash{display:none}
-html.no-splash .hero,
-html.no-splash .topbar,
-html.no-splash .footer{opacity:1}
 /* ============ 兜底：JS 出问题时正文也不会一直白着 ============ */
 /* 页头内联脚本会在 2.5s 后加上 fallback-ready，纯 CSS 兜底 */
 html.fallback-ready .hero,
 html.fallback-ready .topbar,
 html.fallback-ready .footer{opacity:1}
+
+/* ============ 触屏：不留 hover 残留 ============ */
+html.touch .btn:hover{
+  color:#9a9aa3;
+  background:transparent;
+  border-color:transparent;
+}
+html.touch .btn:active{
+  color:#fff;
+  background:rgba(255,255,255,.10);
+  border-color:#45454f;
+}
+html.touch .btn-lg:hover{
+  color:#c9c9d1;
+  background:transparent;
+  border-color:var(--line);
+  padding-left:16px;
+}
+html.touch .btn-lg:hover .arrow{transform:none; color:var(--muted)}
+html.touch .btn-lg:active{
+  background:rgba(255,255,255,.10);
+  border-color:#45454f;
+}
+html.touch .avatar:hover{border-color:var(--line)}

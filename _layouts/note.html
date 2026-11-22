@@ -4,10 +4,10 @@
   从文章自己的 URL 推出所在目录，用于「返回」按钮和面包屑。
   这样以后新增 python安全 / java安全 目录时，模板不用再改。
 {%- endcomment -%}
-{%- assign _parts = page.url | split: '/' -%}
+{%- assign _parts = page.path | split: '/' -%}
 {%- assign _n = _parts.size | minus: 1 -%}
 {%- assign _dirpath = _parts | slice: 0, _n | join: '/' -%}
-{%- if _dirpath == '' -%}{%- assign _dirpath = '/ctf/web/menu' -%}{%- endif -%}
+{%- if _dirpath == '' -%}{%- assign _dirpath = 'ctf/web/menu' -%}{%- endif -%}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -36,14 +36,14 @@
 <div class="bg-veil"></div>
 <header class="topbar">
   <div class="topbar-left">
-    <a class="btn" href="{{ _dirpath | append: '/' | relative_url }}">
+   <a class="btn" href="{{ '/' | append: _dirpath | append: '/' | relative_url }}">
       <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"
            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M10 3 5 8l5 5"/>
       </svg>
       <span>返回</span>
     </a>
-    <span class="crumb">~{{ _dirpath }}</span>
+    <span class="crumb">~/{{ _dirpath }}</span>
   </div>
   <div class="topbar-right">
     <a class="btn" href="https://github.com/Min-2233" target="_blank" rel="noopener">

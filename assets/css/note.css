@@ -128,10 +128,11 @@
 .code-copy:hover{color:#fff;border-color:#45454f}
 .code-copy.done{color:#c3e88d;border-color:#3f5a3f;opacity:1}
 
-/* 触屏（JS 检测到 hover:none 会给每个 .code-wrap 加 .touch）：
-   不跟 hover 走，点一下代码块才浮出来，2.5s 后自动消失，平时不遮字 */
-.code-wrap.touch .code-copy{opacity:0}
-.code-wrap.touch.show .code-copy{opacity:1}
+/* 触屏（第一次触摸时给 <html> 加 .touch）：
+   屏蔽"粘住的 hover"，复制按钮只听 .show 这一个类 */
+html.touch .code-wrap:hover .code-copy{opacity:0}      /* 粘住的 hover 不算数 */
+html.touch .code-wrap.show .code-copy{opacity:1}       /* 长按 1.5s 后出现 */
+html.touch .code-wrap .code-copy.done{opacity:1}       /* 显示"已复制"时别被上面那条藏掉 */
 /* ============================================
    代码高亮配色（One Dark 风格，适配深灰底）
    想换配色只改这一段

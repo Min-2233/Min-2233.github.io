@@ -110,10 +110,10 @@
   content:"";
   position:absolute;
   left:0;
-  /* 从容器顶画到「最后一行中心」：只需内缩半行高度，
-     纯 CSS 算，不依赖 JS 写死像素，所以任何展开/折叠状态都不会多出长条 */
-  top:0;
-  bottom:11px;
+  /* 顶点和长度由 JS 按「父节点 → 最后一个直接子项的标题行中心」算出，
+     点开或收起都会重算，所以子层展开不会把线拖长 */
+  top:var(--vt, 0px);
+  height:var(--vh, 100%);
   width:1px;
   background:var(--wire);
   pointer-events:none;

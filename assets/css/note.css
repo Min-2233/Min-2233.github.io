@@ -1,11 +1,9 @@
 /* ===== 笔记正文排版（深色终端风） ===== */
-
 .crumb{
   font-size:11px;
   letter-spacing:.1em;
   color:var(--muted);
 }
-
 .article{
   position:relative; z-index:1;
   max-width:760px;
@@ -16,47 +14,45 @@
   color:#c9c9d1;
 }
 .article > :first-child{margin-top:0}
-
+/* 标题：一级标题只在这里定义一次（原来被重复定义了 3 次） */
 .article h1{
-  margin:0 0 28px;
+  margin:2em 0 1.2em;
   padding-bottom:16px;
   border-bottom:1px solid var(--line);
   font-size:clamp(22px,3.4vw,30px);
   font-weight:600;
   letter-spacing:.06em;
+  line-height:1.4;
   color:#f2f2f4;
 }
 .article h2{
-  margin:46px 0 14px;
+  margin:2em 0 .8em;
   font-size:19px; font-weight:600;
-  letter-spacing:.04em; color:#eaeaee;
+  letter-spacing:.04em; line-height:1.4;
+  color:#eaeaee;
 }
 .article h3{
-  margin:34px 0 12px;
-  font-size:16px; font-weight:600; color:#e0e0e6;
+  margin:1.8em 0 .6em;
+  font-size:16px; font-weight:600; line-height:1.4;
+  color:#e0e0e6;
 }
 .article h4{
   margin:26px 0 10px;
   font-size:14px; font-weight:600; color:#d6d6dc;
 }
-
-.article p{margin:16px 0}
+.article p{margin:1em 0;line-height:1.8}
 .article strong{color:#fff;font-weight:600}
 .article em{color:#dcdce2}
-
 .article a{
   color:#93aecf;
   border-bottom:1px solid rgba(147,174,207,.35);
   transition:.18s ease;
 }
 .article a:hover{color:#c9dcf5;border-bottom-color:#c9dcf5}
-
 .article ul,.article ol{margin:16px 0;padding-left:24px}
 .article li{margin:7px 0}
 .article li::marker{color:var(--muted)}
-
 .article hr{border:0;border-top:1px solid var(--line);margin:40px 0}
-
 /* 行内代码 */
 .article code{
   font-family:var(--mono);
@@ -67,10 +63,9 @@
   border:1px solid var(--line);
   color:#e8e8ee;
 }
-
 /* 代码块 */
 .article pre{
-  margin:22px 0;
+  margin:1.5em 0;
   padding:16px 18px;
   overflow-x:auto;
   border-radius:8px;
@@ -82,7 +77,6 @@
   padding:0; border:0; background:none;
   font-size:13px; color:#d6d6dc;
 }
-
 /* 引用 */
 .article blockquote{
   margin:22px 0;
@@ -91,135 +85,99 @@
   color:var(--muted);
 }
 .article blockquote p{margin:8px 0}
-
 /* 表格 */
-.article table{width:100%;margin:22px 0;border-collapse:collapse;font-size:14px}
+.article table{width:100%;margin:22px 0 1.5em;border-collapse:collapse;font-size:14px}
 .article th,.article td{padding:9px 12px;border:1px solid var(--line);text-align:left}
 .article th{background:rgba(255,255,255,.045);color:#fff;font-weight:600}
-
 /* 图片 */
 .article img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
-
 /* 底栏不固定 */
 .footer{position:static;padding:0 0 40px}
-
 @media (max-width:520px){
   .article{padding:96px 16px 70px;font-size:14.5px;line-height:1.85}
   .article pre{padding:13px 14px}
   .article th,.article td{padding:7px 9px}
 }
-
+/* ============================================
+   代码块「复制」按钮（由 assets/js/copy-code.js 生成）
+   ============================================ */
+.code-wrap{position:relative}
+.code-copy{
+  position:absolute;
+  top:8px; right:8px;
+  z-index:2;
+  padding:3px 9px;
+  font-family:var(--mono);
+  font-size:11px; line-height:1.5; letter-spacing:.04em;
+  color:#9a9aa3;
+  background:rgba(20,20,23,.92);
+  border:1px solid var(--line);
+  border-radius:6px;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity .18s ease, color .18s ease, border-color .18s ease;
+}
+/* 鼠标移到代码块上才出现，不干扰阅读 */
+.code-wrap:hover .code-copy,
+.code-copy:focus-visible{opacity:1}
+.code-copy:hover{color:#fff;border-color:#45454f}
+.code-copy.done{color:#c3e88d;border-color:#3f5a3f;opacity:1}
+/* 触屏设备没有 hover，直接常显 */
+@media (hover:none){
+  .code-copy{opacity:1}
+}
 /* ============================================
    代码高亮配色（One Dark 风格，适配深灰底）
    想换配色只改这一段
    ============================================ */
-
 .highlight{background:transparent}
-
 /* 注释 */
 .highlight .c,.highlight .c1,.highlight .cm,.highlight .cs,.highlight .cd{
   color:#6b6d78; font-style:italic;
 }
-
 /* 关键字：class / public / function / new / if / return */
 .highlight .k,.highlight .kc,.highlight .kd,.highlight .kn,
 .highlight .kp,.highlight .kr,.highlight .kt{
   color:#c792ea;
 }
-
 /* 字符串 */
 .highlight .s,.highlight .s1,.highlight .s2,.highlight .sb,
 .highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,
 .highlight .si,.highlight .sx,.highlight .sr,.highlight .ss,.highlight .dl{
   color:#c3e88d;
 }
-
 /* 数字 */
 .highlight .m,.highlight .mb,.highlight .mf,.highlight .mh,
 .highlight .mi,.highlight .il,.highlight .mo{
   color:#f78c6c;
 }
-
 /* 变量：$name / $admin / $s */
 .highlight .nv,.highlight .vc,.highlight .vg,.highlight .vi,.highlight .vm{
   color:#e8e8ea;
 }
-
 /* 函数名 */
 .highlight .nf,.highlight .fm{
   color:#82aaff;
 }
-
 /* 类名、命名空间 */
 .highlight .nc,.highlight .nn{
   color:#ffcb6b;
 }
-
 /* 内置函数、属性 */
 .highlight .na,.highlight .nb,.highlight .bp{
   color:#82aaff;
 }
-
 /* 运算符：= . ; ; -> */
 .highlight .o,.highlight .ow{
   color:#89ddff;
 }
-
 /* 标点：括号、分号、冒号 */
 .highlight .p,.highlight .pm{
   color:#a6accd;
 }
-
 /* HTML 标签 */
 .highlight .nt{color:#f07178}
-
 /* diff */
 .highlight .gd{color:#f07178}
 .highlight .gi{color:#c3e88d}
 .highlight .err{color:#ff5370;background:none}
-
-
-
-}
-
-/* 大标题：下方留足空间 */
-.article h1{
-  margin-bottom:1.2em;   /* 30px 字号下约 36px */
-}
-
-
-/* 大标题 */
-.article h1{
-  margin-top:2em;
-  margin-bottom:1.2em;
-  line-height:1.4;
-}
-
-/* 小标题 */
-.article h2{
-  margin-top:2em;
-  margin-bottom:.8em;
-  line-height:1.4;
-}
-
-.article h3{
-  margin-top:1.8em;
-  margin-bottom:.6em;
-  line-height:1.4;
-}
-
-/* 正文 */
-.article p{
-  margin:1em 0;
-  line-height:1.8;
-}
-
-/* 代码块 */
-.article pre{
-  margin:1.5em 0;
-}
-
-/* 表格 */
-.article table{
-  margin-bottom:1.5em;
-}

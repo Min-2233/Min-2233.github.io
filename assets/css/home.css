@@ -10,7 +10,9 @@
   --line:    #2e2e34;
   --accent:  #ffffff;
   --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
-          Consolas,"Liberation Mono",Menlo,"Courier New",monospace;
+          Consolas,"Liberation Mono",Menlo,"Courier New",
+          "Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",
+          monospace;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -123,7 +125,7 @@ a{color:inherit;text-decoration:none}
 }
 .btn:active{transform:translateY(1px)}
 .btn .icon{width:20px;height:20px;display:block;flex:0 0 auto}/* ============ 图标大小 ============ */
-.btn-ctf .icon{width:11px;height:11px}/* 旗帜单独缩小，比 CTF 文字还小一圈 */
+
 /* 语言入口按钮（菜单页用，和顶栏按钮同一套观感，但大一号） */
 .btn-lg{
   display:flex; align-items:center; gap:10px;
@@ -135,13 +137,14 @@ a{color:inherit;text-decoration:none}
   background:transparent;
   border:1px solid var(--line);
   border-radius:9px;
-  transition:color .18s ease, background .18s ease,
-             border-color .18s ease, transform .18s ease;
+  transition:color .18s ease, background .18s ease, border-color .18s ease,
+             padding-left .18s ease, transform .18s ease;
 }
 .btn-lg:hover{
   color:#fff;
   background:rgba(255,255,255,.06);
   border-color:var(--accent);
+  padding-left:22px;        /* 和列表条目一样，鼠标移入轻微右移 */
 }
 .btn-lg:active{transform:translateY(1px)}
 .btn-lg .arrow{

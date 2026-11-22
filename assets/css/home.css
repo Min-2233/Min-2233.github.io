@@ -12,7 +12,6 @@
   --mono: "JetBrains Mono","Fira Code","Cascadia Code","SFMono-Regular",
           Consolas,"Liberation Mono",Menlo,"Courier New",monospace;
 }
-
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -24,27 +23,26 @@ body{
   overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
-
 /* ============ 背景纹理 ============ */
 .bg-grid{
   position:fixed; inset:0; width:100%; height:100%;
   z-index:0; pointer-events:none;
   opacity:.07;
 }
-/* 上实下虚：顶部完全盖住网格，底部逐渐透出 */
+/* 上实下虚：CTF WEB 以上完全盖住网格，以下逐渐透出，底部最明显 */
 .bg-veil{
   position:fixed; inset:0; z-index:0; pointer-events:none;
   background:linear-gradient(
     to bottom,
     rgba(var(--bg-rgb), 1)     0%,
-    rgba(var(--bg-rgb), 1)    12%,
-    rgba(var(--bg-rgb), .90)  30%,
-    rgba(var(--bg-rgb), .65)  55%,
-    rgba(var(--bg-rgb), .35)  78%,
-    rgba(var(--bg-rgb), .10) 100%
+    rgba(var(--bg-rgb), 1)    56%,
+    rgba(var(--bg-rgb), .96)  63%,
+    rgba(var(--bg-rgb), .82)  72%,
+    rgba(var(--bg-rgb), .55)  82%,
+    rgba(var(--bg-rgb), .26)  92%,
+    rgba(var(--bg-rgb), 0)   100%
   );
 }
-
 /* ============ 开场打字 ============ */
 #splash{
   position:fixed; inset:0; z-index:100;
@@ -65,22 +63,25 @@ a{color:inherit;text-decoration:none}
   margin-left:3px;
   background:var(--accent);
   vertical-align:-.14em;
+  opacity:0;              /* ← 延迟开始前不显示光标 */
+  transition:opacity .16s ease;
+}
+/* 等 0.5s 后才亮起光标并开始闪烁，然后才开始打字 */
+.splash-inner.on .caret{
+  opacity:1;
+  transition:none;
   animation:blink 1.05s steps(1) infinite;
 }
 @keyframes blink{50%{opacity:0}}
-
 /* ============ 顶栏 ============ */
 .topbar{
   position:fixed; top:0; left:0; right:0; z-index:20;
   display:flex; align-items:center; justify-content:space-between;
-
   height:64px;                    /* ← 关键：固定高度，所有页面完全对齐 */
   padding:0 22px;                 /* ← 高度定了，上下 padding 归零，改为垂直居中 */
-
   background:var(--bar);          /* ← 不透明实色 */
   border-bottom:1px solid rgba(255,255,255,.05);
 }
-
 .topbar::after{
   content:"";
   position:absolute; left:0; right:0; bottom:0; height:1px;
@@ -90,9 +91,7 @@ a{color:inherit;text-decoration:none}
     rgba(255,255,255,.09),
     transparent);
 }
-
 .topbar-left,.topbar-right{display:flex;align-items:center;gap:10px}
-
 .avatar{
   flex:0 0 auto;
   width:50px; height:50px;/* ============ 头像大小 ============ */
@@ -104,7 +103,6 @@ a{color:inherit;text-decoration:none}
 }
 .avatar:hover{border-color:#3a3a42}
 .avatar svg,.avatar img{width:100%;height:100%;display:block}
-
 .btn{
   display:inline-flex; align-items:center; gap:5px;
   padding:6px 11px;
@@ -117,20 +115,41 @@ a{color:inherit;text-decoration:none}
   transition:color .18s ease, background .18s ease,
              border-color .18s ease, transform .18s ease;
 }
-
+/* 所有按钮统一：移入出现白色细边框（原来只有 CTF 是白的） */
 .btn:hover{
   color:#fff;
-  background:rgba(255,255,255,.06);     /* ← 移入才出现 */
-  border-color:#45454f;                 /* ← 移入才出现 */
+  background:rgba(255,255,255,.06);
+  border-color:var(--accent);
 }
-
 .btn:active{transform:translateY(1px)}
-
-.btn:hover{color:#fff;border-color:#45454f;background:rgba(255,255,255,.06)}
-.btn-ctf .icon{width:11px;height:11px}/* 旗帜单独缩小，比 CTF 文字还小一圈 */
 .btn .icon{width:20px;height:20px;display:block;flex:0 0 auto}/* ============ 图标大小 ============ */
-.btn-ctf:hover{color:var(--accent);border-color:var(--accent)}
-
+.btn-ctf .icon{width:11px;height:11px}/* 旗帜单独缩小，比 CTF 文字还小一圈 */
+/* 语言入口按钮（菜单页用，和顶栏按钮同一套观感，但大一号） */
+.btn-lg{
+  display:flex; align-items:center; gap:10px;
+  width:100%;
+  padding:14px 16px;
+  font-family:var(--mono);
+  font-size:14px; letter-spacing:.06em;
+  color:#c9c9d1;
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:9px;
+  transition:color .18s ease, background .18s ease,
+             border-color .18s ease, transform .18s ease;
+}
+.btn-lg:hover{
+  color:#fff;
+  background:rgba(255,255,255,.06);
+  border-color:var(--accent);
+}
+.btn-lg:active{transform:translateY(1px)}
+.btn-lg .arrow{
+  margin-left:auto;
+  color:var(--muted);
+  transition:transform .18s ease, color .18s ease;
+}
+.btn-lg:hover .arrow{transform:translateX(3px); color:#fff}
 /* ============ 中间主视觉 ============ */
 .hero{
   position:relative; z-index:1;
@@ -165,7 +184,6 @@ a{color:inherit;text-decoration:none}
   color:var(--accent);
   text-transform:uppercase;
 }
-
 /* ============ 底栏 ============ */
 .footer{
   position:fixed; left:0; right:0; bottom:0; z-index:20;
@@ -174,13 +192,11 @@ a{color:inherit;text-decoration:none}
   font-size:11px; letter-spacing:.08em;
   color:#4e4e55;
 }
-
 /* ============ 进场：主页淡入 ============ */
 .hero,.topbar,.footer{opacity:0;transition:opacity .8s ease}
 body.is-ready .hero,
 body.is-ready .topbar,
 body.is-ready .footer{opacity:1}
-
 /* ============ 小屏微调 ============ */
 @media (max-width:520px){
   .topbar{height:56px; padding:0 14px}
@@ -188,9 +204,13 @@ body.is-ready .footer{opacity:1}
   .btn{padding:5px 9px;font-size:11px}
   .hero-sub{margin-top:16px;letter-spacing:.28em;text-indent:.28em}
 }
-
 /* 本标签页已看过开场：直接显示主页 */
 html.no-splash #splash{display:none}
 html.no-splash .hero,
 html.no-splash .topbar,
 html.no-splash .footer{opacity:1}
+/* ============ 兜底：JS 出问题时正文也不会一直白着 ============ */
+/* 页头内联脚本会在 2.5s 后加上 fallback-ready，纯 CSS 兜底 */
+html.fallback-ready .hero,
+html.fallback-ready .topbar,
+html.fallback-ready .footer{opacity:1}

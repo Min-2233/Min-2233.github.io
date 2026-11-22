@@ -15,15 +15,17 @@
           monospace;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
-html{overflow-x:hidden}          /* 手机端：任何东西超宽都不许整页左右拖 */
+html{height:100%}
+/* 横向溢出只在 html 上截断。
+   千万别加到 body 上：那会让 body 变成独立滚动容器，
+   它自己的滚动条位于视口内侧，会被 position:fixed 的背景层盖住。 */
+html{overflow-x:hidden}
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:var(--mono);
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none}
 /* ============ 背景纹理 ============ */

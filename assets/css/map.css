@@ -217,3 +217,10 @@
   .map-wrap{ top:56px }
   .map-hint{ font-size:10px; bottom:12px }
 }
+
+
+/* lockAll() 量宽度时会临时把所有节点设成 data-open="1"，
+   那一刻圆点的"发光/放大"过渡(0.2s)会被真的触发一遍，
+   146 个圆点集体闪一下蓝光 —— 测量期间把过渡关掉。 */
+.measuring .dot,
+.measuring .dot::after{ transition:none !important; }

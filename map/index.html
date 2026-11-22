@@ -720,6 +720,7 @@
   }
 
   centerOnSpine();
+  render();                   /* 先画一次：否则首帧停在 0,0，下一帧才跳到居中，看起来会"闪一下" */
   requestAnimationFrame(tick);
   window.addEventListener("resize", function () { measureHeights(); clampTarget(); });
 })();

@@ -22,7 +22,7 @@ var_dump("0e123"=="0e456");  // true
 // "1admin" 取到开头的 1，1 == 0 不成立 —— 字符串转数值只看开头连续的数字部分。
 ```
 
-## 相等矩阵（PHP 7 / PHP 8）
+# 相等矩阵（PHP 7 / PHP 8）
 
 == 按两边的类型组合走分支，命中哪条用哪条：
 
@@ -65,7 +65,7 @@ var_dump("0e123"=="0e456");  // true
    json_decode('{"a":1}') == "abc" → false
    ```
 
-## MD5绕过（PHP 7 / PHP 8）
+# MD5绕过（PHP 7 / PHP 8）
 
 **函数**：md5()，ctype_alpha()，var_dump()，is_numeric()
 
@@ -147,7 +147,7 @@ B = d131dd02c5e6eec4693d9a0698aff95c2fcab50712467eab4004583eb8fb7f89
     e99f33420f577ee8ce54b67080280d1ec69821bcb6a8839396f965ab6ff72a70
 ```
 
-## 数组绕过：md5() 的严格比较（PHP 7）
+# 数组绕过：md5() 的严格比较（PHP 7）
 
 **函数**：die()
 
@@ -214,7 +214,7 @@ name 和 password 都是数组，第一步 [1] == [2] 不成立，不会进入 e
 | aa3OFF9m | 0e36977786278517984959260394024281014729 |
 | 0e1290633704 | 0e19985187802402577070739524195726831799 |
 
-## json绕过（PHP 7）
+# json绕过（PHP 7）
 
 **函数**：json_decode()，json_encode()
 
@@ -259,7 +259,7 @@ payload 要和代码的比较方式配套：
 另外：省略 json_decode 的第二个参数会返回对象，此时必须写 $obj->key，
 写成 $obj['key'] 会报 Error: Cannot use object of type stdClass as array（两版都致命）。
 
-## array_search()绕过 与 is_array()绕过（PHP 7）
+# array_search()绕过 与 is_array()绕过（PHP 7）
 
 **函数**：is_array()，array_search()，count()，intval()
 
@@ -345,7 +345,7 @@ if (array_search("admin", $ctf) === 0) {
 于是匹配到键为 0 的元素并返回 0，0 === 0 通过，输出 flag。
 如果是 `array_search("admin", $ctf, true)`，第三个参数为严格比较，这招就没用了。
 
-## strcmp()绕过（PHP 7）
+# strcmp()绕过（PHP 7）
 
 **函数**：strcmp()，isset()
 
@@ -463,7 +463,7 @@ switch ($a) {
 因为有 strpos()，字符串里必须出现 admin；而 switch() 的 case 是 == 松散比较，
 4admin 与 4 相等，所以输出 flag。
 
-## in_array()绕过（PHP 7 / PHP 8）
+# in_array()绕过（PHP 7 / PHP 8）
 
 **函数**：in_array()：检查某个值是否存在于数组中
 
@@ -490,7 +490,7 @@ var_dump(in_array('1aa', $array)); // true
 默认是 == 松散比较，"1aa" 与 1 相等（PHP 7 成立，PHP 8 不成立）；
 `in_array('1aa', $array, true)` 第三个参数为 === 严格比较，返回 false，严格比较无法绕过。
 
-## intval()绕过（PHP 7 / PHP 8）
+# intval()绕过（PHP 7 / PHP 8）
 
 **函数**：intval()：取整函数
 
@@ -521,7 +521,7 @@ var_dump(intval("0123", 0));     // int(83)  base 传 0 会按前缀猜进制
 var_dump(intval("9999999999999999999"));  // int(9223372036854775807) 溢出截到 PHP_INT_MAX
 ```
 
-## is_numeric()绕过（PHP 7 / PHP 8）
+# is_numeric()绕过（PHP 7 / PHP 8）
 
 **函数**：is_numeric()
 
@@ -574,7 +574,7 @@ null  == 'admin'  // false == true   → false
 当存在 json_decode 和 unserialize 的时候，部分结构会被解释成 bool 类型，
 攻击者因此能控制比较的一边是 true。
 
-## json_decode 示例（PHP 7 / PHP 8）
+# json_decode 示例（PHP 7 / PHP 8）
 
 ```php
 <?php
@@ -595,7 +595,7 @@ var_dump($data['user'] === 'admin');   // bool(false) ← 换成严格比较就�
 ?>
 ```
 
-## unserialize示例（PHP 7 / PHP 8）
+# unserialize示例（PHP 7 / PHP 8）
 
 ```php
 <?php
@@ -618,7 +618,7 @@ var_dump($data_unserialize['user'] === 'admin');   // bool(false) ← 严格比�
 注意：序列化串里 `s:4:"user"` 的 4 必须等于 user 的实际字节数，
 写错就解析失败返回 false（实测 `s:5` 会得到 bool(false)），后面取值全是 null。
 
-## 十六进制转换（PHP 7 / PHP 8）
+# 十六进制转换（PHP 7 / PHP 8）
 
 网上流传的这段是错的，实测两版都为 false：
 
@@ -631,7 +631,7 @@ var_dump($data_unserialize['user'] === 'admin');   // bool(false) ← 严格比�
 PHP 把字符串转数字时不认 0x 前缀（is_numeric("0x1A") 也是 false）。
 0x1A 只有写成不带引号的字面量才是 26；字符串要转 26 得写 intval("0x1A", 16)。
 
-## %00 截断（PHP 5 及更早；PHP 7 / PHP 8 已失效）
+# %00 截断（PHP 5 及更早；PHP 7 / PHP 8 已失效）
 
 **原理**：
 
@@ -640,7 +640,7 @@ ereg、strcmp 等）会把字符串交给 C 函数处理，遇到 \0 就当字�
 
 **典型利用**：白名单或后缀检查用 `"shell.php\0.jpg"`，检查看到 .jpg，文件系统却只看到 shell.php。
 
-## 参考
+# 参考
 
 - <https://www.cnblogs.com/Mrsm1th/p/6745532.html>
 - <https://blog.csdn.net/nobugnomoney/article/details/124944096>

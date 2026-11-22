@@ -105,16 +105,24 @@
   /* 原来这里是 border-left:1px，会从第一个子节点上方一直画到最后一个下方，
      两端多出两截悬空的短线（看起来最难看的地方）。改成 ::before，
      由 JS 量出「父节点 → 最后一个子节点中心」再画。 */
-}
+   
 .kids::before{
   content:"";
   position:absolute;
   left:0;
-  top:var(--vt, 0px);
-  height:var(--vh, 100%);
+  /* 从容器顶画到「最后一行中心」：只需内缩半行高度，
+     纯 CSS 算，不依赖 JS 写死像素，所以任何展开/折叠状态都不会多出长条 */
+  top:0;
+  bottom:11px;
   width:1px;
   background:var(--wire);
   pointer-events:none;
+}
+
+/* 站点上方的分支是反向长的：线连到下边缘（圆点那侧），上端留半行 */
+.station.up > .up > .kids::before{
+  top:11px;
+  bottom:0;
 }
 .station > .up > .kids,
 .station > .down > .kids,

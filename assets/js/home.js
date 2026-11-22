@@ -17,7 +17,11 @@ const SPLASH = {
   try { seen = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
   if (seen) {
     splash.style.display = "none";
-    body.classList.add("is-ready");
+    /* 隔两帧再加 is-ready：保证"先隐藏、再淡入"真的发生，
+       每次回主页都有同样的 0.8s 过渡，不会有时瞬间出现 */
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { body.classList.add("is-ready"); });
+    });
     return;
   }
   // 立刻打标记：即使用户看到一半跳走，回来也不会重播

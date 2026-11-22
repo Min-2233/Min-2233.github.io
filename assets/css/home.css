@@ -16,6 +16,7 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%}
+html{overflow-x:hidden}          /* 手机端：任何东西超宽都不许整页左右拖 */
 body{
   margin:0;
   background:var(--bg);

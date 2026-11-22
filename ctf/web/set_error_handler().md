@@ -1,5 +1,5 @@
 ---
-title: PHP 相关漏洞
+title: set_error_handler()
 date: 2026-11-20
 ---
 

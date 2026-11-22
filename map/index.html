@@ -550,7 +550,7 @@
 
   
   /* ---------- 一次性锁定横向宽度 + 树干（保证主线永不变形） ---------- */
- function lockAll() {
+  function lockAll() {
     /* 测量期间先关掉过渡：下面会临时把所有节点设成展开，
        否则圆点的"发光/放大"过渡会被真的触发一遍，146 个一起闪蓝光 */
     out.classList.add("measuring");
@@ -575,17 +575,6 @@
        浏览器会从"发光"过渡回"正常"，圆点还是会闪一下。 */
     void out.offsetWidth;
     out.classList.remove("measuring");
-  }
-    /* 全部展开后再量 */
-    stations.forEach(function (s) { s.dataset.open = "1"; });
-    lists.forEach(function (s) { s.dataset.open = "1"; });
-    areas.forEach(function (el) { el.style.height = "auto"; });
-    var widths = stations.map(function (st) { return st.offsetWidth; });
-  
-    areas.forEach(function (el) { el.style.height = ""; });
-    stations.forEach(function (s) { s.dataset.open = "0"; });
-    lists.forEach(function (s) { s.dataset.open = "0"; });
-    stations.forEach(function (st, i) { st.style.width = widths[i] + "px"; });
   }
   
   /* ---------- 上下区高度：按当前展开状态实时算 ---------- */

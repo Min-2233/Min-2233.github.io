@@ -7,6 +7,13 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/home.css">
 <link rel="stylesheet" href="/assets/css/map.css">
+<noscript><style>
+  /* JS 被禁用时退化成普通大纲列表，至少能看能读 */
+  #tree{display:block;padding:110px 24px;list-style:none}
+  #tree ul{list-style:none;padding-left:18px}
+  .map-wrap{position:static;overflow:visible;cursor:auto}
+  .map-canvas{position:static;transform:none!important;width:auto;padding:0}
+</style></noscript>
 </head>
 <body class="is-ready">
 
@@ -39,6 +46,7 @@
   </div>
   <div class="topbar-right">
     <a class="btn" href="/ctf/web/"><span>CTF</span></a>
+    <a class="btn" href="/ctf/web/menu/"><span>CTF</span></a>
   </div>
 </header>
 
@@ -501,26 +509,53 @@
     return acc + core.offsetHeight / 2;
   }
 
-  /* ---------- 一次性锁定横向宽度（保证主线永不变形） ---------- */
-  function lockWidths() {
+ /* ---------- 树干：只画到最后一个子节点的中心 ----------
+     原来是 .kids 上的 border-left，会从容器顶一直画到容器底，
+     首尾各多出一截悬空的短线，分支多的时候很难看。
+     这里量一次第一个/最后一个子节点的中心，只画中间那段。 */
+  function measureTrunks() {
+    Array.prototype.forEach.call(spine.querySelectorAll(".kids"), function (k) {
+      var rows = k.children;
+      if (!rows.length) return;
+      var top = Infinity, bottom = -Infinity;
+      Array.prototype.forEach.call(rows, function (r) {
+        if (!r.offsetHeight) return;
+        var c = r.offsetTop + r.offsetHeight / 2;
+        if (c < top) top = c;
+        if (c > bottom) bottom = c;
+      });
+      if (!isFinite(top)) return;
+      /* 站点上方的分支是倒着长的：树干要贴住下端（圆点那一侧） */
+      var upSide = k.parentNode && k.parentNode.classList.contains("up");
+      if (upSide) {
+        k.style.setProperty("--vt", top + "px");
+        k.style.setProperty("--vh", Math.max(0, k.offsetHeight - top) + "px");
+      } else {
+        k.style.setProperty("--vt", "0px");
+        k.style.setProperty("--vh", Math.max(0, bottom) + "px");
+      }
+    });
+  }
+  
+  /* ---------- 一次性锁定横向宽度 + 树干（保证主线永不变形） ---------- */
+  function lockAll() {
     var stations = Array.prototype.slice.call(spine.querySelectorAll(":scope > .station"));
     var lists = Array.prototype.slice.call(spine.querySelectorAll(".in-list"));
     var areas = Array.prototype.slice.call(
       spine.querySelectorAll(".station > .up, .station > .down")
     );
-
+    /* 全部展开后再量 */
     stations.forEach(function (s) { s.dataset.open = "1"; });
     lists.forEach(function (s) { s.dataset.open = "1"; });
     areas.forEach(function (el) { el.style.height = "auto"; });
-
     var widths = stations.map(function (st) { return st.offsetWidth; });
-
+    measureTrunks();          /* 必须在全部展开的状态下量 */
     areas.forEach(function (el) { el.style.height = ""; });
     stations.forEach(function (s) { s.dataset.open = "0"; });
     lists.forEach(function (s) { s.dataset.open = "0"; });
     stations.forEach(function (st, i) { st.style.width = widths[i] + "px"; });
   }
-
+  
   /* ---------- 上下区高度：按当前展开状态实时算 ---------- */
   function measureHeights() {
     var maxUp = 0, maxDown = 0;
@@ -556,6 +591,9 @@
   }
 
   lockWidths();
+  measureHeights();
+
+  lockAll();
   measureHeights();
 
   /* ---------- 平移 ---------- */

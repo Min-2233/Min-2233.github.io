@@ -14,7 +14,12 @@
   color:#c9c9d1;
 }
 .article > :first-child{margin-top:0}
+
 /* 标题：一级标题只在这里定义一次（原来被重复定义了 3 次） */
+/* 长链接、长参数没有空格，会把手机屏撑宽（整页能左右拖、fixed 元素错位） */
+.article{overflow-wrap:break-word}
+.article a{overflow-wrap:anywhere}
+
 .article h1{
   margin:2em 0 1.2em;
   padding-bottom:16px;
@@ -122,10 +127,11 @@
 .code-copy:focus-visible{opacity:1}
 .code-copy:hover{color:#fff;border-color:#45454f}
 .code-copy.done{color:#c3e88d;border-color:#3f5a3f;opacity:1}
-/* 触屏设备没有 hover，直接常显 */
-@media (hover:none){
-  .code-copy{opacity:1}
-}
+
+/* 触屏（JS 检测到 hover:none 会给每个 .code-wrap 加 .touch）：
+   不跟 hover 走，点一下代码块才浮出来，2.5s 后自动消失，平时不遮字 */
+.code-wrap.touch .code-copy{opacity:0}
+.code-wrap.touch.show .code-copy{opacity:1}
 /* ============================================
    代码高亮配色（One Dark 风格，适配深灰底）
    想换配色只改这一段

@@ -105,7 +105,7 @@
   /* 原来这里是 border-left:1px，会从第一个子节点上方一直画到最后一个下方，
      两端多出两截悬空的短线（看起来最难看的地方）。改成 ::before，
      由 JS 量出「父节点 → 最后一个子节点中心」再画。 */
-} 
+}
 .kids::before{
   content:"";
   position:absolute;

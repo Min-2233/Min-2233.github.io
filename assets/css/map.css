@@ -1,11 +1,8 @@
 /* ============================================================
    Web 知识地图 · 布局锁定版
    ============================================================ */
-
 #tree{ display:none }
-
 .crumb{ font-size:11px; letter-spacing:.1em; color:var(--muted) }
-
 /* ---------- 画布 ---------- */
 .map-wrap{
   position:fixed; top:64px; left:0; right:0; bottom:0;
@@ -13,18 +10,17 @@
   user-select:none; -webkit-user-select:none; touch-action:none;
 }
 .map-wrap.dragging{ cursor:grabbing }
-
 .map-canvas{
   position:absolute; top:0; left:0;
   padding:60px 80px;
   width:max-content;          /* 关键：不再被视口宽度卡住 */
   transform-origin:0 0;
   will-change:transform;
+  /* 连线颜色：比 --line 提亮一档，细线才看得清 */
+  --wire:#35353e;
 }
-
 /* ---------- 骨架 ---------- */
 .htree{ display:flex; align-items:flex-start }
-
 .root{
   flex:0 0 auto;
   height:34px;
@@ -37,7 +33,6 @@
   font-size:15px; font-weight:700; color:#fff;
   letter-spacing:.03em; white-space:nowrap;
 }
-
 /* ---------- 脊线 ---------- */
 .spine{
   position:relative;
@@ -46,7 +41,6 @@
   gap:46px;
   margin-left:46px;
 }
-
 /* 一条贯穿到底的横线 */
 .spine::before{
   content:"";
@@ -56,11 +50,10 @@
   top:calc(var(--up, 0px) + 17px);
   height:1px;
   background:linear-gradient(90deg,
-    var(--line) 0%,
-    var(--line) 88%,
+    var(--wire) 0%,
+    var(--wire) 88%,
     transparent 100%);
 }
-
 .station{
   position:relative;
   flex:0 0 auto;
@@ -68,7 +61,6 @@
   flex-direction:column;
   align-items:flex-start;
 }
-
 /* 上区 / 下区：高度由 JS 锁定，点击不再变化 */
 .station > .up,
 .station > .down{
@@ -82,7 +74,6 @@
   height:var(--down, 0px);
   align-items:flex-start;
 }
-
 /* 站点核心：圆点压在线上 */
 .station > .core{
   position:relative;
@@ -94,27 +85,36 @@
   cursor:pointer;
 }
 .station > .core:hover > .label{ color:#fff }
-
 .station > .core > .label{
   display:inline-block;
   font-size:14px; font-weight:600; color:#e2e2e8;
   transition:color .16s ease;
 }
 .station > .core > .cnt{ display:inline-block }
-
 /* 标签浮到线的另一侧，主线才连续 */
 .station.down > .core > .label,
 .station.down > .core > .cnt{ transform:translateY(-20px) }
-
 .station.up > .core > .label,
 .station.up > .core > .cnt{ transform:translateY(20px) }
-
 /* ---------- 子树 ---------- */
 .kids{
+  position:relative;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  border-left:1px solid var(--line);
+  /* 原来这里是 border-left:1px，会从第一个子节点上方一直画到最后一个下方，
+     两端多出两截悬空的短线（看起来最难看的地方）。改成 ::before，
+     由 JS 量出「父节点 → 最后一个子节点中心」再画。 */
+}
+.kids::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:var(--vt, 0px);
+  height:var(--vh, 100%);
+  width:1px;
+  background:var(--wire);
+  pointer-events:none;
 }
 .station > .up > .kids,
 .station > .down > .kids,
@@ -123,9 +123,7 @@
   padding-left:26px;
 }
 .station.up > .up > .kids{ flex-direction:column-reverse }
-
 .station[data-open="0"] .kids{ display:none }
-
 /* ---------- 列表节点 ---------- */
 .in-list{
   position:relative;
@@ -133,7 +131,6 @@
   flex-direction:column;
   align-items:flex-start;
 }
-
 .in-list > .self{
   position:relative;
   display:flex;
@@ -146,7 +143,7 @@
 }
 .in-list.branch > .self{ cursor:pointer }
 .in-list.branch > .self:hover{ background:rgba(255,255,255,.04) }
-
+/* 横向支线：接到主干上 */
 .in-list > .self::before{
   content:"";
   position:absolute;
@@ -154,15 +151,13 @@
   top:50%;
   width:26px;
   height:1px;
-  background:var(--line);
+  background:var(--wire);
+  pointer-events:none;
 }
-
 .in-list > .self > .label{ font-size:13px; color:#b6b6c0; transition:color .16s ease }
 .in-list.branch > .self > .label{ font-weight:600; color:#dcdce2 }
 .in-list.branch > .self:hover > .label{ color:#fff }
-
 .in-list[data-open="0"] > .kids{ display:none }
-
 /* ---------- 计数 ---------- */
 .cnt{
   font-size:10px; line-height:15px; padding:0 6px;
@@ -170,7 +165,6 @@
   background:rgba(255,255,255,.05);
   border:1px solid var(--line);
 }
-
 /* ---------- 圆点 ---------- */
 .dot{
   flex:0 0 auto;
@@ -194,7 +188,6 @@
   transition:background .2s ease, transform .2s ease;
 }
 .dot:hover{ border-color:#6b6b78 }
-
 .station[data-open="1"] > .core > .dot,
 .in-list[data-open="1"] > .self > .dot{
   border-color:#8aa0bd;
@@ -206,14 +199,12 @@
   background:#d3e2f5;
   transform:scale(1.1);
 }
-
 /* ---------- 提示 ---------- */
 .map-hint{
   position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
   z-index:2; margin:0; font-size:11px; letter-spacing:.08em;
   color:#5c5c66; white-space:nowrap; pointer-events:none;
 }
-
 @media (max-width:520px){
   .map-wrap{ top:56px }
   .map-hint{ font-size:10px; bottom:12px }

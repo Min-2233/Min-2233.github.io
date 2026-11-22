@@ -28,7 +28,7 @@
 /* ============ 开场打字动画（只在第一次进入时播） ============ */
 const SPLASH = {
   text: "min2233",
-  startDelay: 1000,        // 进入页面后先静 0.5s，再亮光标开始打
+  startDelay: 500,        // 进入页面后先静 0.5s，再亮光标开始打
   typeSpeed: 85,
   holdBeforeFade: 2000,
   fadeDuration: 380

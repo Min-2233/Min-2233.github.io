@@ -1,6 +1,6 @@
 ---
-title:SSTI
-date:2026-11-23
+title: SSTI
+date: 2026-11-23
 ---
 # SSTI
 

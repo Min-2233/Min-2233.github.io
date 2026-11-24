@@ -1,5 +1,5 @@
 ---
-title: PHP弱类型
+title: php弱类型
 date: 2026-11-22
 ---
 

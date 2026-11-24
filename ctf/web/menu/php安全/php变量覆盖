@@ -125,9 +125,4 @@ POST: flag=aaa
 
 ---
 
-两个可选的收尾（不改你正文，只提醒）：
-
-1. 「因为 `$_200 = $flag`，所以 `die($_200)` 就会输出 flag」这句，如果给完全不懂的人看，可以补半句：`$_200` 是**在 `$flag` 被覆盖之前**复制过去的。不补也不影响你自己复习。
-2. `echo $a;` 那段还是没提“传 `?id=1` 页面不会有输出”这个坑——你自己踩过，要不要加由你决定。
-
-需要我把它存成文件（比如 `C:\Users\22461\php-lab\变量覆盖.md`），还是你自己复制？_
+参考文章：https://blog.csdn.net/qq_45089570/article/details/104858285?fromshare=blogdetail&sharetype=blogdetail&sharerId=104858285&sharerefer=PC&sharesource=2301_77409586&sharefrom=from_link

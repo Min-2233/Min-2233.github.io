@@ -124,10 +124,42 @@ die($_200);
 
 ### payload
 
-```
+```php
 GET:  ?_200=flag
 POST: flag=aaa
 
----
+```
+
+
+## 函数：extract()
+
+**作用**：把数组中的键名当作变量名，把键值当作变量值
+
+```php
+extract(['a' => 1, 'b' => 2]); //等于$a = 1 ;  $b=2;
+
+extract($_GET); //如果传入?flag=1&id=2  那么等于$flag='1' $id='2'
+```
+
+## 函数：Parse_str()
+
+**作用**：把查询串解析成数组 ,参数名当键，参数值当值
+
+```php
+parse_str("a=1&b=2", $out);
+// 输出为$out = ['a' => '1', 'b' => '2']
+```
+
+如果不给第二个参数，解析出来的键名会被直接当成变量名，所以存在变量覆盖问题。
+
+```php
+parse_str("a=1&b=2");
+//等于$a='1' ; $b ='2'；(仅限于php7及以前)
+```
+
+
+
+
+
 
 参考文章：https://blog.csdn.net/qq_45089570/article/details/104858285?fromshare=blogdetail&sharetype=blogdetail&sharerId=104858285&sharerefer=PC&sharesource=2301_77409586&sharefrom=from_link

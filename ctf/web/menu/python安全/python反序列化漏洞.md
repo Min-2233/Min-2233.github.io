@@ -106,3 +106,4 @@ print(base64.b64encode(pickle.dumps(RCE())))
 | `g` | GET | 从备忘录取出 | 编号 | — | 那个对象 |
 
 
+参考文章：https://hello-ctf.com/hc-web/py_unser/

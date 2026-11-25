@@ -74,8 +74,10 @@ print(base64.b64encode(pickle.dumps(RCE())))
 
 
 # pickle opcode 对照表（protocol 0）
-> 栈横着写，最右边是栈顶。全部在本机 Python 3.11 实测。
+
+
 ## 总表
+
 | 指令 | 全称 | 中文 | 参数 | 取走 | 放回 |
 |---|---|---|---|---|---|
 | `.` | STOP | 停止 | — | 栈顶 | 结束并返回它 |

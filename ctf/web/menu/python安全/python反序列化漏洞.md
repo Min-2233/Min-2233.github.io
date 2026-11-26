@@ -119,4 +119,4 @@ pickle.loads(payload)        # 本地验证
 | `g` | GET | 从备忘录取出 | 编号 | — | 那个对象 |
 
 
-参考文章：https://hello-ctf.com/hc-web/py_unser/
+资料来源：https://hello-ctf.com/hc-web/py_unser/

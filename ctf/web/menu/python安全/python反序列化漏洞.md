@@ -12,6 +12,10 @@ date: 2026-11-25
 ## python反序列化漏洞
 **原理：**
 Python 的 pickle 格式本身是一段指令，其中的 GLOBAL 可以按名字取出任意函数、REDUCE 可以调用它，攻击者把“取 os.system这类可调用系统命令的函数、传 cat /flag”直接写进序列，反序列化时就会执行。
+
+GLOBAL：按名字把函数搬到栈上，指令c  
+REDUCE：调用栈上的函数，指令R (后面的总表有写)
+
 **模块：** pickle
 **函数：** `pickle.dumps()`
 **作用：** 将python对象序列化成二进制字节串（bytes）

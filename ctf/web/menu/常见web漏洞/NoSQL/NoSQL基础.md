@@ -96,28 +96,26 @@ db.myCollection.find({ age: { $gt: 25 } });
 - `$regex`：正则
 
 ```js
-{ age: { $ne: 25 } }
+{ age: { $ne: 25 } } //筛选出不是 25 的
 ```
 
-筛选出不是 25 的
 
 ```js
-{ age: { $regex: "^25" } }
+{ age: { $regex: "^25" } } //以 25 开头
 ```
 
-以 25 开头
+
 
 ```js
-{ age: { $regex: "25$" } }
+{ age: { $regex: "25$" } } //以 25 结尾
 ```
 
-以 25 结尾
 
 ```js
-{ age: { $regex: "^25$" } }
+{ age: { $regex: "^25$" } } //整体就是 25（近似等于，且只对字符串）
 ```
 
-整体就是 25（近似等于，且只对字符串）
+
 
 ## 比较操作符：
 
@@ -376,6 +374,6 @@ if __name__ == "__main__":
 
 ## 文章部分内容来源：
 
-- @url:`https://hello-ctf.com/hc-web/nosql/#nosql`
-- @url:`https://www.runoob.com/mongodb/mongodb-query.html`
-- @url:`https://xz.aliyun.com/news/9363`
+- url:`https://hello-ctf.com/hc-web/nosql/#nosql`
+- url:`https://www.runoob.com/mongodb/mongodb-query.html`
+- url:`https://xz.aliyun.com/news/9363`

@@ -87,6 +87,11 @@
 }
 /* 这个页面底栏不固定，避免压住列表 */
 .footer{position:static; padding:0 0 40px}
+@media (max-width:520px){
+  /* 和文章页对齐：手机上是 16px 边距，不是 22px */
+  .notes{padding:96px 16px 70px}
+  .notes-sub{margin-bottom:28px}
+}
 
 /* 触屏：列表条目不保留 hover 残留 */
 html.touch .item:hover{

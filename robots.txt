@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://min-2233.github.io/sitemap.xml

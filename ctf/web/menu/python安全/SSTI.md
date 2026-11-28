@@ -111,8 +111,8 @@ print(obj.__class__.__mro__[3].__subclasses__()[143].__init__.__globals__['popen
 ```text
 desktop-s2liqu4\22461
 ```
-# 六、不依赖固定下标
-实际环境不清楚对方有哪些类、下标是多少。但 Python 里一切都是对象，可以从任意字面量出发：
+# 六、不依赖固定类
+实际环境不清楚对方有哪些类。但 Python 里一切都是对象，可以从任意字面量出发：
 ```python
 ''.__class__              # <class 'str'>
 ().__class__              # <class 'tuple'>
@@ -123,7 +123,7 @@ desktop-s2liqu4\22461
 
 
 
-# 七、魔术属性 / 方法总结
+# 七、魔术方法
 
 ```python
 __class__   #返回类型所属的对象

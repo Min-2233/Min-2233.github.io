@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>页面不存在 · Min2233</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/css/home.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  /* 404 页自带排版，不动任何全局样式 */
+  .err{
+    position:relative; z-index:1;
+    min-height:100vh; min-height:100dvh;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:0 20px 56px;
+    text-align:center;
+  }
+  .err-code{
+    margin:0;
+    font-size:clamp(64px,14vw,116px);
+    font-weight:700; line-height:1;
+    letter-spacing:.12em; text-indent:.12em;
+    color:#26262e;
+    -webkit-text-stroke:1px #3c3c46;
+    user-select:none;
+  }
+  .err-msg{
+    margin:20px 0 0;
+    font-size:14px; letter-spacing:.06em;
+    color:#c9c9d1;
+  }
+  .err-sub{
+    margin:10px 0 34px;
+    font-size:11px; letter-spacing:.16em;
+    color:var(--muted);
+  }
+  .err-links{display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
+  .err-links a{
+    padding:9px 14px;
+    font-size:12px; letter-spacing:.06em;
+    color:#9a9aa3;
+    border:1px solid var(--line);
+    border-radius:8px;
+    transition:color .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .err-links a:hover{
+    color:#fff; border-color:var(--accent);
+    background:rgba(255,255,255,.06);
+  }
+  .err-path{
+    margin:28px 0 0;
+    font-size:11px; letter-spacing:.04em;
+    color:#55555f;
+    word-break:break-all;
+  }
+  @media (max-width:520px){ .err{padding:0 16px 48px} }
+</style>
+</head>
+<body>
+<svg class="bg-grid" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <pattern id="hex" width="90" height="52" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="1">
+        <path d="M30 0 L15 26 L-15 26 L-30 0 L-15 -26 L15 -26 Z"/>
+        <path d="M75 26 L60 52 L30 52 L15 26 L30 0 L60 0 Z"/>
+        <path d="M120 0 L105 26 L75 26 L60 0 L75 -26 L105 -26 Z"/>
+        <path d="M30 52 L15 78 L-15 78 L-30 52 L-15 26 L15 26 Z"/>
+        <path d="M120 52 L105 78 L75 78 L60 52 L75 26 L105 26 Z"/>
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#hex)"/>
+</svg>
+<div class="bg-veil"></div>
+<main class="err">
+  <p class="err-code">404</p>
+  <p class="err-msg">这个地址没有对应的页面</p>
+  <p class="err-sub">可能是链接打错了，或者文章还没写</p>
+  <nav class="err-links" aria-label="去别处看看">
+    <a href="/">首页</a>
+    <a href="/ctf/web/menu/">CTF 笔记</a>
+    <a href="/map/">知识地图</a>
+  </nav>
+  <p class="err-path" id="errPath"></p>
+</main>
+<script>
+  /* 把打错的路径显示出来，方便自己发现是哪个链接挂了 */
+  (function () {
+    var p = document.getElementById("errPath");
+    if (!p) return;
+    var s = location.pathname + location.search;
+    if (s.length > 120) s = s.slice(0, 120) + "…";
+    p.textContent = s;
+  })();
+</script>
+</body>
+</html>

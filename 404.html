@@ -86,11 +86,14 @@
   <p class="err-path" id="errPath"></p>
 </main>
 <script>
-  /* 把打错的路径显示出来，方便自己发现是哪个链接挂了 */
+  /* 把打错的路径显示出来，方便自己发现是哪个链接挂了。
+     注意要解码：location.pathname 里中文是 %E5%B8%B8…，直接显示就是乱码 */
   (function () {
     var p = document.getElementById("errPath");
     if (!p) return;
-    var s = location.pathname + location.search;
+    var raw = location.pathname + location.search;
+    var s = raw;
+    try { s = decodeURIComponent(raw); } catch (e) { s = raw; }
     if (s.length > 120) s = s.slice(0, 120) + "…";
     p.textContent = s;
   })();

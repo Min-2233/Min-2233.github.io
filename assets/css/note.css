@@ -54,6 +54,15 @@
   transition:.18s ease;
 }
 .article a:hover{color:#c9dcf5;border-bottom-color:#c9dcf5}
+/* 文章顶部那行日期 */
+.article .meta{
+  margin:0 0 2px;
+  font-size:11.5px;
+  letter-spacing:.14em;
+  color:var(--muted);
+}
+/* 日期行顶替了原来的首元素位置，把 h1 的上边距补回来，视觉上不变 */
+.article .meta + h1{margin-top:10px}
 .article ul,.article ol{margin:16px 0;padding-left:24px}
 .article li{margin:7px 0}
 .article li::marker{color:var(--muted)}
@@ -102,6 +111,17 @@
   .article{padding:96px 16px 70px;font-size:14.5px;line-height:1.85}
   .article pre{padding:13px 14px}
   .article th,.article td{padding:7px 9px}
+}
+
+/* ============================================
+   顶栏：面包屑太长时省略，别把按钮挤出去
+   （文章路径可以到 ~/ctf/web/menu/常见web漏洞/NoSQL）
+   ============================================ */
+.topbar-left{min-width:0}
+.crumb{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:520px){
+  .topbar-left{gap:8px}
+  .crumb{max-width:32vw}
 }
 /* ============================================
    代码块「复制」按钮（由 assets/js/copy-code.js 生成）

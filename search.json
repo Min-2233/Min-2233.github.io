@@ -1,0 +1,17 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign notes = site.pages
+      | where_exp: "p", "p.path contains 'ctf/web/menu/'"
+      | where_exp: "p", "p.name != 'index.html'"
+      | sort: "date" | reverse -%}
+[
+{%- for n in notes %}
+  {"title": {{ n.title | default: n.name | jsonify }},
+   "url": {{ n.url | relative_url | jsonify }},
+   "date": {{ n.date | date: "%Y-%m-%d" | jsonify }},
+   "cat": {{ n.path | split: '/' | slice: -2, 1 | join: '' | jsonify }},
+   "text": {{ n.content | strip_html | strip_newlines | truncate: 6000 | jsonify }}}{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+]

@@ -7,15 +7,19 @@
 {%- assign _parts = page.path | split: '/' -%}
 {%- assign _n = _parts.size | minus: 1 -%}
 {%- assign _dirpath = _parts | slice: 0, _n | join: '/' -%}
-{%- if _dirpath == '' -%}{%- assign _dirpath = 'ctf/web/menu' -%}{%- endif -%}
-{%- assign _cat = _dirpath | split: '/' | last -%}
+{%- assign _cat = '' -%}
+{%- assign _back = '/' -%}
+{%- if _dirpath != '' -%}
+  {%- assign _cat = _dirpath | split: '/' | last -%}
+  {%- assign _back = '/' | append: _dirpath | append: '/' -%}
+{%- endif -%}
 {%- assign _desc = page.description | default: page.title | append: ' · Min2233 的 CTF Web 笔记' -%}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ page.title | default: site.title }} · {{ _cat }} · Min2233</title>
+<title>{% if _cat == '' %}{{ page.title | default: site.title }} · Min2233{% else %}{{ page.title | default: site.title }} · {{ _cat }} · Min2233{% endif %}</title>
 <meta name="description" content="{{ _desc }}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Min2233_Blog">
@@ -45,7 +49,7 @@
 <div class="bg-veil"></div>
 <header class="topbar">
   <div class="topbar-left">
-   <a class="btn" href="{{ '/' | append: _dirpath | append: '/' | relative_url }}">
+   <a class="btn" href="{{ _back | relative_url }}">
       <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor"
            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M10 3 5 8l5 5"/>

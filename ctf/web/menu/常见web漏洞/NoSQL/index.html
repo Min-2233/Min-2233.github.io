@@ -46,9 +46,7 @@ layout: null
     <span class="crumb">~/ctf/web/menu/常见web漏洞/NoSQL</span>
   </div>
   <div class="topbar-right">
-    <a class="btn" href="https://github.com/Min-2233" target="_blank" rel="noopener">
-      <span>GitHub</span>
-    </a>
+    <!-- 三条杠 + 卷帘菜单：由 /assets/js/menu.js 生成（GitHub 已在菜单里） -->
   </div>
 </header>
 <!-- ===== 列表 ===== -->
@@ -61,6 +59,7 @@ layout: null
       <a class="item" href="{{ note.url | relative_url }}">
         <span class="idx">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
         <span class="name">{{ note.title | default: note.name }}</span>
+        <span class="date">{{ note.date | date: "%Y-%m-%d" }}</span>
         <span class="go" aria-hidden="true">→</span>
       </a>
     </li>
@@ -71,5 +70,6 @@ layout: null
 {% endif %}
 </main>
 <footer class="footer">© 2026 Min2233</footer>
+<script src="/assets/js/menu.js" defer></script>
 </body>
 </html>

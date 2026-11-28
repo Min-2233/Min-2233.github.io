@@ -1,5 +1,6 @@
-title: CTF
-description: Web
+title: Min2233_Blog
+description: Min2233 的 CTF Web 学习笔记
+url: https://min-2233.github.io
 
 defaults:
   - scope:
@@ -11,3 +12,8 @@ defaults:
 markdown: kramdown
 kramdown:
   syntax_highlighter: rouge
+
+# jekyll-sitemap 由 GitHub Pages 直接支持（白名单插件），
+# 构建时会自动生成 /sitemap.xml，搜索引擎就有入口了。
+plugins:
+  - jekyll-sitemap

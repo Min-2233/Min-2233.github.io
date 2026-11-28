@@ -49,17 +49,7 @@
   </div>
 </header>
 
-<!-- 知识点过滤（脚本在页面底部） -->
-<div class="map-filter" id="mapFilterBox">
-  <span class="mf-icon" aria-hidden="true">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-      <circle cx="6.9" cy="6.9" r="4.3"/><path d="M10.2 10.2 14 14"/>
-    </svg>
-  </span>
-  <input id="mapFilter" type="search" placeholder="过滤知识点，如：反序列化" autocomplete="off" spellcheck="false">
-  <span class="mf-count" id="mapCount"></span>
-  <button class="mf-clear" id="mapClear" type="button" aria-label="清空过滤">×</button>
-</div>
+
 
 
 <div class="map-wrap" id="mapWrap">
@@ -639,97 +629,7 @@
   }
 
 
-  /* ================= 知识点过滤 =================
-     只保留「标签命中」的节点和它的所有祖先，并把祖先展开，
-     然后重跑 lockAll / measureHeights / measureTrunks / centerOnSpine。
-     测量必须重跑：否则主干线宽度还是旧的、连线端点会悬空。 */
-  var fBox   = document.getElementById("mapFilter");
-  var fWrap  = document.getElementById("mapFilterBox");
-  var fCount = document.getElementById("mapCount");
-  var fClear = document.getElementById("mapClear");
-  var fActive = false;
-  function fSaveState() {
-    if (fActive) return;
-    Array.prototype.forEach.call(spine.querySelectorAll(".station, .in-list"), function (el) {
-      el.__savedOpen = el.dataset.open;
-    });
-    fActive = true;
-  }
-  function fRestoreState() {
-    Array.prototype.forEach.call(spine.querySelectorAll(".station, .in-list"), function (el) {
-      el.classList.remove("is-hidden");
-      if (el.__savedOpen !== undefined) {
-        el.dataset.open = el.__savedOpen;
-        delete el.__savedOpen;
-      }
-    });
-    fActive = false;
-  }
-  function fRefresh() {
-    lockAll();
-    measureHeights();
-    measureTrunks();
-    centerOnSpine();
-  }
-  function applyFilter(raw) {
-    var q = String(raw == null ? "" : raw).trim().toLowerCase();
-    if (fWrap) fWrap.classList.toggle("has-q", !!q);
-    if (!q) {
-      if (fCount) { fCount.textContent = ""; fCount.removeAttribute("data-zero"); }
-      if (fActive) { fRestoreState(); fRefresh(); }
-      return;
-    }
-    fSaveState();
-    /* 1) 数据树里先算：自己命中 / 子孙里有人命中 */
-    var hits = 0;
-    (function mark(node) {
-      var self = node.label.toLowerCase().indexOf(q) > -1;
-      if (self) hits++;
-      var any = self;
-      for (var i = 0; i < node.kids.length; i++) {
-        if (mark(node.kids[i])) any = true;
-      }
-      node.__any = any;
-      return any;
-    })(rootData);
-    /* 2) 落到 DOM：不命中整棵藏掉，命中的祖先全部展开 */
-    function walk(node) {
-      var el = node.el;
-      if (!el) return;
-      if (!node.__any) { el.classList.add("is-hidden"); return; }
-      el.classList.remove("is-hidden");
-      if (node.kids.length) {
-        el.dataset.open = "1";
-        for (var i = 0; i < node.kids.length; i++) walk(node.kids[i]);
-      }
-    }
-    rootData.kids.forEach(walk);
-    if (fCount) {
-      fCount.textContent = hits ? hits + " 项" : "无匹配";
-      if (hits) fCount.removeAttribute("data-zero");
-      else fCount.setAttribute("data-zero", "1");
-    }
-    fRefresh();
-  }
-  if (fBox) {
-    var fTimer = null;
-    fBox.addEventListener("input", function () {
-      clearTimeout(fTimer);
-      var v = fBox.value;
-      fTimer = setTimeout(function () { applyFilter(v); }, 110);
-    });
-    fBox.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") { e.stopPropagation(); fBox.value = ""; applyFilter(""); }
-    });
-    if (fClear) {
-      fClear.addEventListener("click", function () {
-        fBox.value = "";
-        applyFilter("");
-        fBox.focus();
-      });
-    }
-  }
-
+  
 
 
   lockAll();

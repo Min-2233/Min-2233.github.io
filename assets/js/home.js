@@ -1,30 +1,5 @@
-/* ============ 右上角 Menu：点开 / 收起卷帘菜单 ============ */
-(function () {
-  var btn = document.getElementById("menuToggle");
-  var panel = document.getElementById("siteMenu");
-  if (!btn || !panel) return;
-  function setOpen(open) {
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-    panel.classList.toggle("open", open);
-  }
-  btn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    setOpen(btn.getAttribute("aria-expanded") !== "true");
-  });
-  /* 点面板外面收起 */
-  document.addEventListener("click", function (e) {
-    if (panel.classList.contains("open") &&
-        !panel.contains(e.target) && !btn.contains(e.target)) {
-      setOpen(false);
-    }
-  });
-  /* Esc 收起 */
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") setOpen(false);
-  });
-  /* 点了里面的链接就收起（跳转前顺手收一下） */
-  panel.addEventListener("click", function () { setOpen(false); });
-})();
+/* 顶部菜单的开关逻辑已经搬到 assets/js/menu.js（所有页面共用一份）。
+   这个文件只负责首页的开场打字动画。 */
 /* ============ 开场打字动画（只在第一次进入时播） ============ */
 const SPLASH = {
   text: "min2233",

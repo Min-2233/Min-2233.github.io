@@ -576,6 +576,11 @@
     var keepOpen = stations.map(function (s) { return s.dataset.open; })
       .concat(lists.map(function (s) { return s.dataset.open; }));
 
+    /* 关键：把上一次锁过的那串 width 清掉再量。
+       否则量到的是上一轮的旧宽度（过滤时被藏掉的站点是 0px），
+       越量越窄，最后所有分支叠在一起 */
+    stations.forEach(function (st) { st.style.width = ""; });
+
     /* 全部展开后再量 */
     stations.forEach(function (s) { s.dataset.open = "1"; });
     lists.forEach(function (s) { s.dataset.open = "1"; });

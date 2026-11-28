@@ -3,6 +3,7 @@ title: python反序列化漏洞
 date: 2026-11-25
 ---
 # python反序列化漏洞
+创建时间：2026-11-25
 # 序列化
 在程序运行时，产生的状态都存在内存中（变量、对象属性、容器内容等）。如果程序停止运行，这些数据就消失了，对于很多程序来说，重建这些状态需要付出很高的代价，可能是重新发起上千次的网络请求，或是重新跑几小时的计算，所以为了下次启动时能接着用，就需要把这些内存中的状态保存到硬盘中，这个将内存中的对象转为一段序列（文本或字节流）的过程就叫做序列化。这段序列可以直接存入硬盘，但写入硬盘也只是它的用途之一。
 # 反序列化
@@ -29,6 +30,7 @@ data_4 = pickle.dumps('a',protocol=0)                                #b'Va\np0\n
 print(data_0,data_1,data_2,data_3,data_4)
 ```
 **单字符指令：** `( l a d s t .` 等， 一个字符就是一条完整指令
+
 **带参数的指令：** `I p g V S c i o` 等，参数一直读到换行为止；其中 c 和 i 要读两行（模块名一行、属性名一行），中间的全是它的参数。
 文章结尾有opcode 对照表
 # 魔术方法：`__reduce__`
@@ -56,14 +58,19 @@ r = os.system('echo hello')
 ```
 → 屏幕上出现 hello，但 r 的值是 0
 0 = 命令执行成功。命令的输出直接打印到终端，Python 拿不到，所以要拿到命令的输出，就不能用 os.system()。
+
 **模块：** subprocess
+
 **函数：** `subprocess.getoutput()`
+
 **作用：** 执行一条外部命令，把输出当作字符串返回（str），命令执行失败时不抛异常，可能是空串，总是走shell
 ```python
 out = subprocess.getoutput('echo hello')
 ```
 → out 的值是 'hello'
+
 **函数：** `subprocess.check_output()`
+
 **作用：** 执行一条外部命令，把它的标准输出收下来返回（bytes），命令执行失败时会抛CalledProcessError，默认不走shell，要shell=True
 ```python
 import pickle, base64, subprocess

@@ -103,6 +103,18 @@
 .article table{width:100%;margin:22px 0 1.5em;border-collapse:collapse;font-size:14px}
 .article th,.article td{padding:9px 12px;border:1px solid var(--line);text-align:left}
 .article th{background:rgba(255,255,255,.045);color:#fff;font-weight:600}
+/* 手机端：表格比屏幕宽时（哈希、payload 这类不能断行的内容），
+   让表格自己横向滚动，而不是把整页撑宽、右边被裁掉。
+   display:block 只是把表格外面那层变成可滚动的块，里面的行列照旧是表格。 */
+@media (max-width:640px){
+  .article table{
+    display:block;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .article table th,
+  .article table td{white-space:nowrap}
+}
 /* 图片 */
 .article img{max-width:100%;height:auto;border-radius:8px;border:1px solid var(--line)}
 /* 底栏不固定 */
